@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-rgb: 8 7 5;
+  --background-shade-rgb: 50 50 50;
+  --foreground-rgb: 255 255 255;
+  --foreground-weak-rgb: 128 128 128;
+
+  --accent-rgb: 230 53 43;
+  --accent-text-rgb: 255 255 255;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-rgb: 240 239 244;
+    --background-shade-rgb: 225 224 229;
+    --foreground-rgb: 0 0 0;
+    --foreground-weak-rgb: 170 170 170;
+  }
+}
+
+@components {
+  .button {
+    @apply flex items-center justify-center py-2 px-4 bg-accent text-accent-text;
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #__nuxt,
+  #__layout {
+    @apply w-full h-full bg-background text-foreground overflow-x-hidden;
+
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold mb-4 text-foreground;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  a {
+    @apply text-accent no-underline;
+  }
+
+  /* Links in headings */
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    @apply text-foreground no-underline;
+  }
+
+  .button {
+    @apply flex items-center justify-center py-3 px-6 bg-accent text-accent-text;
+  }
+}
