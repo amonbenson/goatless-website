@@ -9,9 +9,11 @@ const { image } = defineProps({
 });
 
 const backdropMedia = useState("backdropMedia");
+const backdropOpacity = useState("backdropOpacity", () => 0.15);
 
 function onIntersect() {
   backdropMedia.value = image;
+  backdropOpacity.value = 0.5;
 }
 const { observe, unobserve } = useIntersectionObserver(onIntersect, { threshold: 0.5 });
 

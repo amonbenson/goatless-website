@@ -1,4 +1,5 @@
 <script setup>
+import Backdrop from "@/components/Backdrop.vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import FooterBar from "@/components/FooterBar.vue";
 import NavOverlay from "@/components/NavOverlay.vue";
@@ -21,38 +22,12 @@ const socials = [
   { to: "https://tiktok.com/@goatless_official", icon: "teenyicons:tiktok-outline" }
 ];
 
-// use current background image state
-const backdropMedia = useState("backdropMedia", () => null);
-const backdropOpacity = useState("backdropOpacity", () => 0.5);
-
-// reset background image on route change
-const router = useRouter();
-router.beforeEach(() => {
-  backdropMedia.value = null;
-  backdropOpacity.value = 0.5;
-});
-
 const menuOpen = defineModel("menuOpen");
 </script>
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <div class="absolute inset-0 z-backdrop bg-background pointer-events-none">
-      <!-- Background Image -->
-      <div
-        class="absolute inset-0 bg-center bg-cover bg-fixed"
-        :style="{
-          backgroundImage: backdropMedia ? `url(${backdropMedia})` : 'none',
-          transition: 'background-image 300ms ease-in-out',
-        }"
-      />
-
-      <!-- Dark Overlay -->
-      <div
-        class="absolute inset-0 bg-background"
-        :style="{ opacity: backdropOpacity }"
-      />
-    </div>
+    <Backdrop class="absolute inset-0 z-backdrop pointer-events-none" />
 
     <!-- Skip to main content link -->
     <div class="fixed z-max top-0 p-4">
