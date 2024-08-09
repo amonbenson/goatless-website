@@ -1,5 +1,4 @@
 <script setup>
-const videoTypes = ["mp4", "webm", "ogg"];
 
 const url = useState("backdropMedia", () => null);
 const opacity = useState("backdropOpacity", () => 0.15);
@@ -17,7 +16,7 @@ const mediaType = computed(() => {
 
   // check extension to determine if media is a video or image
   const extension = url.value.split(".").pop();
-  if (videoTypes.includes(extension)) return "video";
+  if (extension == "mp4") return "video";
   else return "image";
 })
 </script>
@@ -33,6 +32,18 @@ const mediaType = computed(() => {
         transition: 'background-image 300ms ease-in-out',
       }"
     />
+
+    <!-- Background Video -->
+    <video
+      v-else-if="mediaType === 'video'"
+      class="absolute inset-0 w-screen h-screen object-cover object-center"
+      autoplay
+      loop
+      muted
+      playsinline
+    >
+      <source :src="url" type="video/mp4" />
+    </video>
 
     <!-- Dark Overlay -->
     <div
