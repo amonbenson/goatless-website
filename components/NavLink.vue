@@ -16,7 +16,7 @@ const active = computed(() => route.path === to.toString());
     :to="to"
     :target="newTab ? '_blank' : '_self'"
     :rel="newTab ? 'noopener noreferrer' : ''"
-    class="hover:text-foreground transition-colors"
+    class="hover:text-foreground transition-colors font-normal"
     :class="active ? 'text-foreground' : 'text-foreground-weak'"
   >
     <slot />

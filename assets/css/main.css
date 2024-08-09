@@ -11,6 +11,7 @@
   --foreground-weak-rgb: 128 128 128;
 
   --accent-rgb: 230 53 43;
+  --accent-lighter-rgb: 245 76 66;
   --accent-text-rgb: 255 255 255;
 }
 
@@ -19,7 +20,7 @@
     --background-rgb: 240 239 244;
     --background-shade-rgb: 225 224 229;
     --foreground-rgb: 0 0 0;
-    --foreground-weak-rgb: 170 170 170;
+    --foreground-weak-rgb: 100 100 100;
   }
 }
 
@@ -64,7 +65,7 @@
   }
 
   a {
-    @apply text-accent no-underline;
+    @apply text-accent-lighter no-underline;
   }
 
   /* Links in headings */
@@ -74,7 +75,7 @@
   h4 a,
   h5 a,
   h6 a {
-    @apply text-foreground no-underline;
+    @apply text-inherit;
   }
 
   /* .button {

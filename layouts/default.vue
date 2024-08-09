@@ -6,7 +6,6 @@ import NavOverlay from "@/components/NavOverlay.vue";
 
 const headerLinks = [
   { to: "/shows", label: "shows" },
-  { to: "/repertoire", label: "repertoire" },
   { to: "/members", label: "members" },
   { to: "/about", label: "about" }
 ];

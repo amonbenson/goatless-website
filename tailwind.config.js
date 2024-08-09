@@ -12,11 +12,13 @@ export default {
     colors: {
       "transparent": "transparent",
       "current": "currentColor",
+      "inherit": "inherit",
       "background": "rgb(var(--background-rgb) / <alpha-value>)",
       "background-shade": "rgb(var(--background-shade-rgb) / <alpha-value>)",
       "foreground": "rgb(var(--foreground-rgb) / <alpha-value>)",
       "foreground-weak": "rgb(var(--foreground-weak-rgb) / <alpha-value>)",
       "accent": "rgb(var(--accent-rgb) / <alpha-value>)",
+      "accent-lighter": "rgb(var(--accent-lighter-rgb) / <alpha-value>)",
       "accent-text": "rgb(var(--accent-text-rgb) / <alpha-value>)"
     },
     extend: {
