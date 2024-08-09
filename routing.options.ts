@@ -1,7 +1,7 @@
 import type { RouterConfig } from "nuxt/schema";
 
 export default <RouterConfig> {
-  scrollBehavior: async (to, from, savedPosition) => {
+  scrollBehavior: () => {
     // always scroll to top
     return { top: 0 };
   }

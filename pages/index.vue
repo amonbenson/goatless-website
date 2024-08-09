@@ -1,7 +1,3 @@
-<template>
-  <ContentDoc />
-</template>
-
 <script setup>
 import { onMounted } from "vue";
 
@@ -11,3 +7,7 @@ onMounted(async () => {
   backgroundImage.value = "/images/hero.jpg";
 });
 </script>
+
+<template>
+  <ContentDoc />
+</template>

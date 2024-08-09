@@ -1,5 +1,5 @@
 <script setup>
-import { computed, watch, onBeforeMount } from "vue";
+import { computed } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import FooterBar from "@/components/FooterBar.vue";
 import NavOverlay from "@/components/NavOverlay.vue";
@@ -32,7 +32,7 @@ const backgroundImageStyle = computed(() => {
 const router = useRouter();
 router.beforeEach(() => {
   backgroundImage.value = null;
-})
+});
 
 const menuOpen = defineModel("menuOpen");
 </script>
@@ -42,7 +42,7 @@ const menuOpen = defineModel("menuOpen");
     class="flex flex-col min-h-screen bg-center bg-cover bg-fixed bg-blend-overlay bg-background bg-opacity-85"
     :style="{
       backgroundImage: backgroundImageStyle,
-      transition: 'background-image 300ms ease-in-out'
+      transition: 'background-image 300ms ease-in-out',
     }"
   >
     <div class="fixed z-max top-0 p-4">

@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     head: {
       charset: "utf-8",
       title: "Goatless",
-      viewport: "width=device-width, initial-scale=1",
+      viewport: "width=device-width, initial-scale=1"
     }
   },
   devtools: { enabled: false },
