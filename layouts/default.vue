@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from "vue";
 import HeaderBar from "@/components/HeaderBar.vue";
 import FooterBar from "@/components/FooterBar.vue";
 import NavOverlay from "@/components/NavOverlay.vue";
@@ -23,28 +22,39 @@ const socials = [
 ];
 
 // use current background image state
-const backgroundImage = useState("backgroundImage", () => null);
-const backgroundImageStyle = computed(() => {
-  return backgroundImage.value ? `url(${backgroundImage.value})` : "none";
-});
+const backdropMedia = useState("backdropMedia", () => null);
+const backdropOpacity = useState("backdropOpacity", () => 0.5);
 
 // reset background image on route change
 const router = useRouter();
 router.beforeEach(() => {
-  backgroundImage.value = null;
+  backdropMedia.value = null;
+  backdropOpacity.value = 0.5;
 });
 
 const menuOpen = defineModel("menuOpen");
 </script>
 
 <template>
-  <div
-    class="flex flex-col min-h-screen bg-center bg-cover bg-fixed bg-blend-overlay bg-background bg-opacity-85"
-    :style="{
-      backgroundImage: backgroundImageStyle,
-      transition: 'background-image 300ms ease-in-out',
-    }"
-  >
+  <div class="flex flex-col min-h-screen">
+    <div class="absolute inset-0 z-backdrop bg-background pointer-events-none">
+      <!-- Background Image -->
+      <div
+        class="absolute inset-0 bg-center bg-cover bg-fixed"
+        :style="{
+          backgroundImage: backdropMedia ? `url(${backdropMedia})` : 'none',
+          transition: 'background-image 300ms ease-in-out',
+        }"
+      />
+
+      <!-- Dark Overlay -->
+      <div
+        class="absolute inset-0 bg-background"
+        :style="{ opacity: backdropOpacity }"
+      />
+    </div>
+
+    <!-- Skip to main content link -->
     <div class="fixed z-max top-0 p-4">
       <a href="#main-content" class="bg-background text-foreground sr-only focus:not-sr-only">Skip to main content</a>
     </div>
@@ -55,8 +65,8 @@ const menuOpen = defineModel("menuOpen");
       :links="headerLinks"
     />
 
-    <main id="main-content" class="flex-grow flex flex-col">
-      <div class="container mx-auto px-4 flex-grow flex flex-col justify-center my-8">
+    <main id="main-content" class="flex-grow flex justify-center items-center">
+      <div class="container mx-auto px-4 py-8">
         <slot />
       </div>
     </main>

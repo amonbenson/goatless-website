@@ -2,7 +2,7 @@
 ---
 title: Sören
 image: "/images/members/soeren.jpg"
-justify: end
+rtl: true
 ---
 Description of Sören goes here.
 Description of Sören goes here.
@@ -46,7 +46,7 @@ Description of Lukas goes here.
 ---
 title: Amon
 image: "/images/members/amon.jpg"
-justify: end
+rtl: true
 ---
 Description of Amon goes here.
 ::
@@ -63,7 +63,7 @@ Description of Nico goes here.
 ---
 title: Björn
 image: "/images/members/bjoern.jpg"
-justify: end
+rtl: true
 ---
 Description of Björn goes here.
 ::

@@ -1,10 +1,10 @@
 <script setup>
 import { onMounted } from "vue";
 
-const backgroundImage = useState("backgroundImage");
+const backdropMedia = useState("backdropMedia");
 
 onMounted(async () => {
-  backgroundImage.value = "/images/hero.jpg";
+  backdropMedia.value = "/images/hero.jpg";
 });
 </script>
 

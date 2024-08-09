@@ -2,7 +2,11 @@
 title: Goatless
 ---
 
-:landing-hero
+<!-- :landing-hero -->
+
+![Goatless](/images/hero.jpg)
+
+:vspace
 
 ::button-link{to="/contact"}
 Book us now

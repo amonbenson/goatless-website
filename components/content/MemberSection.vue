@@ -5,16 +5,13 @@ import { useIntersectionObserver } from "@/composables/useIntersectionObserver";
 const { image } = defineProps({
   title: String,
   image: String,
-  justify: {
-    type: String,
-    default: "start"
-  }
+  rtl: Boolean
 });
 
-const backgroundImage = useState("backgroundImage");
+const backdropMedia = useState("backdropMedia");
 
 function onIntersect() {
-  backgroundImage.value = image;
+  backdropMedia.value = image;
 }
 const { observe, unobserve } = useIntersectionObserver(onIntersect, { threshold: 0.5 });
 
@@ -34,7 +31,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="memberSection" :class="`sm:h-screen flex justify-${justify} items-center`">
+  <div
+    ref="memberSection"
+    class="sm:h-screen flex items-center"
+    :class="rtl ? 'justify-end' : 'justify-start'"
+  >
     <div class="w-full md:w-1/2 mb-64">
       <ProseH2 :id="title">
         {{ title }}

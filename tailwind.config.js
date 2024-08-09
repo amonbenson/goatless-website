@@ -22,6 +22,7 @@ export default {
     extend: {
       zIndex: {
         "min": -99999,
+        "backdrop": -100,
         "overlay": 1000,
         "header": 1001,
         "footer": 1001,
