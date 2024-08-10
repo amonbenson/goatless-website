@@ -2,23 +2,38 @@
 const url = useState("backdropMedia", () => null);
 const opacity = useState("backdropOpacity", () => 0.15);
 
+// store the last image url separately to enable a fade-out transition when the url is set to null
+const lastImageUrl = ref(null);
+
 // reset backdrop on route change
 const router = useRouter();
 router.beforeEach(() => {
   url.value = null;
   opacity.value = 0.15;
+  lastImageUrl.value = null;
 });
 
 // determine media type from extension
 const mediaType = computed(() => {
-  if (!url.value)
+  if (!url.value) {
     return "none";
+  }
 
   // check extension to determine if media is a video or image
   const extension = url.value.split(".").pop();
-  if (extension === "mp4")
+  if (extension === "mp4") {
     return "video";
-  else return "image";
+  }
+  else {
+    return "image";
+  }
+});
+
+// store the last image url
+watchEffect(() => {
+  if (mediaType.value === "image") {
+    lastImageUrl.value = url.value;
+  }
 });
 </script>
 
@@ -26,10 +41,10 @@ const mediaType = computed(() => {
   <div class="bg-background">
     <!-- Background Image -->
     <div
-      v-if="mediaType === 'image'"
+      v-if="mediaType === 'image' || mediaType === 'none'"
       class="absolute inset-0 bg-center bg-cover bg-fixed"
       :style="{
-        backgroundImage: url ? `url(${url})` : 'none',
+        backgroundImage: lastImageUrl ? `url(${lastImageUrl})` : 'none',
         transition: 'background-image 300ms ease-in-out',
       }"
     />
@@ -48,8 +63,8 @@ const mediaType = computed(() => {
 
     <!-- Dark Overlay -->
     <div
-      class="absolute inset-0 bg-background"
-      :style="{ opacity: 1 - opacity }"
+      class="absolute inset-0 bg-background transition-opacity duration-300"
+      :style="{ opacity: 1 - (opacity * (mediaType === 'none' ? 0 : 1)) }"
     />
   </div>
 </template>

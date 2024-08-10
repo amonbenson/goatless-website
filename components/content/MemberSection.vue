@@ -17,6 +17,7 @@ function onIntersect() {
 const { observe, unobserve } = useIntersectionObserver(onIntersect, { threshold: 0.5 });
 
 const sectionElement = ref(null);
+const contentElement = ref(null);
 
 onMounted(() => {
   if (sectionElement.value) {
@@ -34,7 +35,7 @@ onUnmounted(() => {
 onBeforeRouteUpdate((to) => {
   if (to.path.endsWith("members")) {
     // check if the top of the section is within the viewport
-    const { top } = sectionElement.value.getBoundingClientRect();
+    const { top } = contentElement.value.getBoundingClientRect();
     if (top >= 0 && top <= window.innerHeight) {
       onIntersect();
     }
@@ -48,8 +49,8 @@ onBeforeRouteUpdate((to) => {
     class="min-h-screen flex items-center"
     :class="rtl ? 'justify-end' : 'justify-start'"
   >
-    <div class="w-full md:w-1/2 mb-64">
-      <slot />
+    <div ref="contentElement" class="w-full md:w-1/2 mb-64">
+      <ContentSlot />
     </div>
   </div>
 </template>
