@@ -15,7 +15,8 @@ export default defineNuxtConfig({
     "nuxt-svgo",
     "nuxt-icon",
     "@hypernym/nuxt-gsap",
-    "@nuxt/content"
+    "@nuxt/content",
+    "@nuxtjs/robots"
   ],
   css: ["~/assets/css/main.css"],
   postcss: {
