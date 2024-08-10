@@ -3,7 +3,6 @@ import { onMounted, onUnmounted, ref } from "vue";
 import { useIntersectionObserver } from "@/composables/useIntersectionObserver";
 
 const { image } = defineProps({
-  title: String,
   image: String,
   rtl: Boolean
 });
@@ -17,31 +16,39 @@ function onIntersect() {
 }
 const { observe, unobserve } = useIntersectionObserver(onIntersect, { threshold: 0.5 });
 
-const memberSection = ref(null);
+const sectionElement = ref(null);
 
 onMounted(() => {
-  if (memberSection.value) {
-    observe(memberSection.value);
+  if (sectionElement.value) {
+    observe(sectionElement.value);
   }
 });
 
 onUnmounted(() => {
-  if (memberSection.value) {
+  if (sectionElement.value) {
     unobserve(memberSection.value);
+  }
+});
+
+// if the route updates within the same page (e. g. by clicking on a nav anchor), update the intersection manually
+onBeforeRouteUpdate((to) => {
+  if (to.path.endsWith("members")) {
+    // check if the top of the section is within the viewport
+    const { top } = sectionElement.value.getBoundingClientRect();
+    if (top >= 0 && top <= window.innerHeight) {
+      onIntersect();
+    }
   }
 });
 </script>
 
 <template>
   <div
-    ref="memberSection"
-    class="sm:h-screen flex items-center"
+    ref="sectionElement"
+    class="min-h-screen flex items-center"
     :class="rtl ? 'justify-end' : 'justify-start'"
   >
     <div class="w-full md:w-1/2 mb-64">
-      <ProseH2 :id="title">
-        {{ title }}
-      </ProseH2>
       <slot />
     </div>
   </div>

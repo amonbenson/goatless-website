@@ -13,6 +13,8 @@
   --accent-rgb: 230 53 43;
   --accent-lighter-rgb: 245 76 66;
   --accent-text-rgb: 255 255 255;
+
+  --anchor-offset: max(6rem, calc(50vh - 12rem));
 }
 
 @media (prefers-color-scheme: light) {
@@ -76,6 +78,20 @@
   h5 a,
   h6 a {
     @apply text-inherit;
+  }
+
+  /* make sure the headings are not too close to the top when a hash is used to navigate to a section. see https://stackoverflow.com/a/24298427 */
+  h1::before,
+  h2::before,
+  h3::before,
+  h4::before,
+  h5::before,
+  h6::before {
+    content: "";
+    display: block;
+    height: var(--anchor-offset);
+    margin-top: calc(-1 * var(--anchor-offset));
+    visibility: hidden;
   }
 
   /* .button {

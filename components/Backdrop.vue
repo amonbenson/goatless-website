@@ -1,5 +1,4 @@
 <script setup>
-
 const url = useState("backdropMedia", () => null);
 const opacity = useState("backdropOpacity", () => 0.15);
 
@@ -12,13 +11,15 @@ router.beforeEach(() => {
 
 // determine media type from extension
 const mediaType = computed(() => {
-  if (!url.value) return "none";
+  if (!url.value)
+    return "none";
 
   // check extension to determine if media is a video or image
   const extension = url.value.split(".").pop();
-  if (extension == "mp4") return "video";
+  if (extension === "mp4")
+    return "video";
   else return "image";
-})
+});
 </script>
 
 <template>
@@ -42,7 +43,7 @@ const mediaType = computed(() => {
       muted
       playsinline
     >
-      <source :src="url" type="video/mp4" />
+      <source :src="url" type="video/mp4">
     </video>
 
     <!-- Dark Overlay -->

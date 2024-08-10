@@ -17,11 +17,9 @@ export function useIntersectionObserver(callback, options) {
 
   onMounted(() => {
     observer.value = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          callback(entry.target);
-        }
-      });
+      entries
+        .filter(entry => entry.isIntersecting)
+        .forEach(entry => callback(entry.target));
     }, options);
   });
 
