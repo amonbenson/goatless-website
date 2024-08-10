@@ -26,20 +26,20 @@ const backgroundImage = computed(() => {
   }
 });
 
-const backdropMedia = useState("backdropMedia");
-const backdropOpacity = useState("backdropOpacity");
+// const backdropMedia = useState("backdropMedia");
+// const backdropOpacity = useState("backdropOpacity");
 
 function enableBackdrop() {
-  if (props.image && !props.weak) {
-    backdropMedia.value = props.image;
-    backdropOpacity.value = 0.5;
-  }
+  // if (props.image && !props.weak) {
+  //   backdropMedia.value = props.image;
+  //   backdropOpacity.value = 0.5;
+  // }
 }
 
 function disableBackdrop() {
-  if (backdropMedia.value) {
-    // backdropMedia.value = null;
-  }
+  // if (backdropMedia.value) {
+  //   backdropMedia.value = null;
+  // }
 }
 </script>
 
