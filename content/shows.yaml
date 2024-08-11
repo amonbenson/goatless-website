@@ -1,24 +1,27 @@
 shows:
-  - date: August 10, 2024
-    venue: The Fillmore
-    venueUrl: https://www.fillmore.com/
-    button: Tickets
-    buttonUrl: https://www.ticketmaster.com/
-    image: https://images7.alphacoders.com/133/1339451.png
-  - date: August 12, 2024
-    venue: The Fillmore
-    venueUrl: https://www.fillmore.com/
-    button: Tickets
-    buttonUrl: https://www.ticketmaster.com/
-    image: https://images7.alphacoders.com/133/1339451.png
-  - date: August 12, 2024
-    venue: The Fillmore
-    venueUrl: https://www.fillmore.com/
-    button: Tickets
-    buttonUrl: https://www.ticketmaster.com/
-  - date: August 9, 2024
-    venue: The Fillmore
-    venueUrl: https://www.fillmore.com/
-    button: Tickets
-    buttonUrl: https://www.ticketmaster.com/
-    image: https://images7.alphacoders.com/133/1339451.png
+  - date: April 10, 2024
+    venue: Die Weisse Rose
+    venueLocation: Schöneberg
+    venueUrl: https://maps.app.goo.gl/YcUjXHS1WA2Qgcsi6
+    button: Infos
+    buttonUrl: https://www.berlin.de/ba-ts/jugendfreizeiteinrichtungen/einrichtungen/weisse-rose/
+
+  - date: April 26, 2024
+    venue: Haus der Jugend
+    venueLocation: Zehlendorf
+    venueUrl: https://maps.app.goo.gl/iiXTuzVzcUQB7Apw6
+    button: Infos
+    buttonUrl: https://hdjzehlendorf.de/
+
+  - date: May 23, 2024
+    venue: Junction Bar
+    venueLocation: Kreuzberg
+    venueUrl: https://maps.app.goo.gl/rnhYUyPH7gam6LdAA
+    button: Infos
+    buttonUrl: https://junction-bar.de/program/05_2024/05_24.html#LayoutDiv32
+    image: https://www.junction-bar.de/img/drumset.jpg
+
+  - date: July 5, 2024
+    venue: TUS Sommerparty
+    venueLocation: TU Berlin Charlottenburg
+    venueUrl: https://maps.app.goo.gl/fFR3H8TpCqkApCPe9

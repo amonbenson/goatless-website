@@ -17,8 +17,19 @@ onMounted(async () => {
       <ShowCardList
         :shows="data.shows"
         filter="upcoming"
-        empty-message="No upcoming shows are scheduled."
-      />
+      >
+        <template #empty>
+          <p>
+            No upcoming shows are scheduled. Follow us on <NuxtLink
+              to="https://www.instagram.com/goatless_official"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </NuxtLink> for the latest updates.
+          </p>
+        </template>
+      </ShowCardList>
 
       <Vspace />
 

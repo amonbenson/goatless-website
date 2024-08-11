@@ -5,6 +5,7 @@ import ButtonLink from "./ButtonLink.vue";
 const props = defineProps({
   date: { type: String, required: true },
   venue: { type: String, required: true },
+  venueLocation: String,
   venueUrl: String,
   button: String,
   buttonUrl: String,
@@ -41,11 +42,35 @@ function disableBackdrop() {
   //   backdropMedia.value = null;
   // }
 }
+
+const formattedDate = computed(() => {
+  const date = new Date(props.date);
+
+  // include year only if it's not the current year
+  const currentYear = new Date().getFullYear();
+
+  const format = {
+    day: "2-digit",
+    month: "long",
+    year: date.getFullYear() === currentYear ? undefined : "numeric"
+  };
+
+  return date.toLocaleDateString("en-EN", format);
+});
+
+const venueText = computed(() => {
+  if (props.venueLocation) {
+    return `${props.venue} \u00B7 ${props.venueLocation}`;
+  }
+  else {
+    return props.venue;
+  }
+});
 </script>
 
 <template>
   <div
-    class="relative flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 mb-4 py-8 min-h-28 overflow-hidden bg-center bg-cover"
+    class="relative flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 mb-4 py-8 min-h-28 overflow-hidden bg-center bg-cover backdrop-blur-xl"
     :class="weak ? 'border-foreground/20 border-2' : 'bg-foreground/10'"
     :style="reactive({ backgroundImage })"
     @mouseenter.prevent="enableBackdrop()"
@@ -54,7 +79,7 @@ function disableBackdrop() {
     <!-- Date -->
     <div class="flex justify-center items-center w-48">
       <p class="text-lg">
-        {{ new Date(props.date).toLocaleDateString("en-EN", { day: "2-digit", month: "long" }) }}
+        {{ formattedDate }}
       </p>
     </div>
 
@@ -67,10 +92,10 @@ function disableBackdrop() {
         target="_blank"
         rel="noopener"
       >
-        {{ props.venue }}
+        {{ venueText }}
       </a>
       <span v-else>
-        {{ props.venue }}
+        {{ venueText }}
       </span>
     </div>
 

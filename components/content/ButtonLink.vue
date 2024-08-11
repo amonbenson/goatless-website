@@ -14,6 +14,6 @@ defineProps<{
     :target="newTab ? '_blank' : '_self'"
     :rel="newTab ? 'noopener noreferrer' : ''"
   >
-    <slot />
+    <ContentSlot :use="$slots.default" unpack="p" />
   </nuxt-link>
 </template>

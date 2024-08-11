@@ -8,21 +8,20 @@ const props = defineProps({
     type: String,
     default: "all"
   },
-  emptyMessage: {
-    type: String,
-    default: "No shows"
-  },
   weak: Boolean
 });
+
+const today = new Date().setHours(0, 0, 0, 0);
 
 const filteredShows = computed(() => {
   if (!props.shows) {
     return [];
   }
 
-  const today = new Date().setHours(0, 0, 0, 0);
-  const sortedShows = props.shows.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+  // sort by reverse date
+  const sortedShows = props.shows.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
+  // apply filter
   switch (props.filter) {
     case "upcoming":
       return sortedShows.filter(show => new Date(show.date) >= today);
@@ -37,15 +36,16 @@ const filteredShows = computed(() => {
 </script>
 
 <template>
-  <slot name="heading" />
-
   <ShowCard
     v-for="show in filteredShows"
     :key="show.date"
     v-bind="show"
     :weak="props.weak"
   />
-  <p v-if="!filteredShows.length" class="text-center text-foreground-weak text-lg">
-    {{ props.emptyMessage }}
-  </p>
+
+  <div v-if="!filteredShows.length" class="flex flex-col items-center text-foreground-weak">
+    <ContentSlot :use="$slots.empty">
+      No _shows_ found.
+    </ContentSlot>
+  </div>
 </template>

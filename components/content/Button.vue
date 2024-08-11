@@ -2,6 +2,6 @@
   <button
     class="button"
   >
-    <slot />
+    <ContentSlot :use="$slots.default" unpack="p" />
   </button>
 </template>

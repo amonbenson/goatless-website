@@ -3,7 +3,7 @@
 image: "/images/members/soeren.jpg"
 rtl: true
 ---
-## Sören
+## Sören &centerdot; _Lead Singer_
 Description of Sören goes here.
 Description of Sören goes here.
 Description of Sören goes here.
@@ -24,7 +24,7 @@ Description of Sören goes here.
 ---
 image: "/images/members/lukas.jpg"
 ---
-## Lukas
+## Lukas &centerdot; _Bassist_
 
 Description of Lukas goes here.
 Description of Lukas goes here.
@@ -48,7 +48,7 @@ Description of Lukas goes here.
 image: "/images/members/amon.jpg"
 rtl: true
 ---
-## Amon
+## Amon &centerdot; _Keyboarder_
 
 Description of Amon goes here.
 ::
@@ -57,7 +57,7 @@ Description of Amon goes here.
 ---
 image: "/images/members/nico.jpg"
 ---
-## Nico
+## Nico &centerdot; _Guitarist_
 
 Description of Nico goes here.
 ::
@@ -67,7 +67,9 @@ Description of Nico goes here.
 image: "/images/members/bjoern.jpg"
 rtl: true
 ---
-## Björn
+## Björn &centerdot; _Drummer_
 
-Description of Björn goes here.
+Born in 1998 and a Berlin native, Björn has been playing the drums for over 15 years, breaking countless sticks along the way. He founded his first band, _Jigsaw_, in 2013 and was an integral part of his school band, _Wilmacoustix_. Björn later teamed up with Go(&oslash;)dy and Amon for their debut collaboration, _Dup Steppas_. Juggling multiple projects, he played in two bands simultaneously until they merged to form _Goatless_.
+
+Outside of music, Björn has a passion for boxing and traveling. Recognized as one of the greatest drummers on the planet, he never misses a beat.
 ::

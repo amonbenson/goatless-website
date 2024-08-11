@@ -28,7 +28,7 @@
 
 @layer components {
   .button {
-    @apply flex items-center justify-center py-2 px-4 bg-accent text-accent-text;
+    @apply inline-block py-2 px-4 bg-accent text-accent-text text-center;
   }
 }
 
@@ -92,5 +92,10 @@
     height: var(--anchor-offset);
     margin-top: calc(-1 * var(--anchor-offset));
     visibility: hidden;
+  }
+
+  /* paragraph spacing */
+  p:not(:last-child) {
+    margin-bottom: 1.25rem;
   }
 }
