@@ -66,13 +66,13 @@ To build the website for production and start the server, run:
 
 ```bash
 yarn build
-pm2 start ecosystem.config.js --env production
+pm2 start ecosystem.config.cjs --env production
 ```
 
 To stop the server, run:
 
 ```bash
-pm2 stop ecosystem.config.js
+pm2 stop ecosystem.config.cjs
 ```
 
 To check the server status and logs, run:

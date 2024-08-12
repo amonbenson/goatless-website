@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "goatless-nuxt",
+      name: "goatless-website",
       port: 80,
       script: "./.output/server/index.mjs",
       max_memory_restart: "500M",
