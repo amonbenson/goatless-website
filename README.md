@@ -1,75 +1,83 @@
-# Nuxt 3 Minimal Starter
+# Goatless Website
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![example workflow](https://github.com/amonbenson/goatless-website/actions/workflows/lint.yml/badge.svg)
 
-## Setup
+## Installation
 
-Make sure to install the dependencies:
+### Node.js
+
+Install the latest LTS release of Node.js (currently version 20). If you don't have Node.js installed, I'd recommend using [nvm](https://github.com/nvm-sh/nvm) or [nvm-windows](https://github.com/coreybutler/nvm-windows).
+
+On Linux, run:
 
 ```bash
-# npm
-npm install
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+nvm use --lts
+```
 
-# pnpm
-pnpm install
+On Windows, download the latest _nvm-setup.exe_ from the [nvm-windows releases page](https://github.com/coreybutler/nvm-windows/releases) and run the installer. Then, open a new command prompt and run:
 
-# yarn
+```powershell
+nvm install --lts
+nvm use --lts
+```
+
+### Yarn
+
+Install the latest version of Yarn:
+
+```bash
+npm install --global yarn
+```
+
+_Note: you can also use any other package manager, such as npm or pnpm, but you'll need to adjust the commands accordingly._
+
+### Project Dependencies
+
+Clone the repository and install the project dependencies:
+
+```bash
+git clone https://github.com/amonbenson/goatless-website.git
+cd goatless-website
 yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Development
 
-Start the development server on `http://localhost:3000`:
+To start the development server, run:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
 yarn dev
-
-# bun
-bun run dev
 ```
+
+The website will be available at [http://localhost:3000](http://localhost:3000).
 
 ## Production
 
-Build the application for production:
+You can use [pm2](https://pm2.keymetrics.io/) to manage the production server. To install pm2, run:
 
 ```bash
-# npm
-npm run build
+yarn global add pm2
+```
 
-# pnpm
-pnpm run build
+To build the website for production and start the server, run:
 
-# yarn
+```bash
 yarn build
-
-# bun
-bun run build
+pm2 start ecosystem.config.js --env production
 ```
 
-Locally preview production build:
+To stop the server, run:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+pm2 stop ecosystem.config.js
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+To check the server status and logs, run:
+
+```bash
+pm2 status
+pm2 logs
+```
