@@ -1,6 +1,6 @@
 # Goatless Website
 
-![example workflow](https://github.com/amonbenson/goatless-website/actions/workflows/lint.yml/badge.svg)
+![example workflow](https://github.com/amonbenson/goatless-website/actions/workflows/ci.yml/badge.svg)
 
 ## Installation
 

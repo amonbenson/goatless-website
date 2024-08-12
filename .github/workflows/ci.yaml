@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run lint
+        run: yarn lint
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint  # This ensures the build job only runs if the lint job passes
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build SSR bundle
+        run: yarn build
+
+      - name: Archive SSR bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: ssr-bundle
+          path: .output/server
+
+      - name: Generate static site
+        run: yarn generate
+
+      - name: Archive static site
+        uses: actions/upload-artifact@v3
+        with:
+          name: static-site
+          path: .output/public
