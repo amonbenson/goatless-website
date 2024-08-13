@@ -83,8 +83,12 @@ def webhook_deploy():
         logging.warning("Invalid X-Hub-Signature-256")
         abort(403)
 
-    print("PAYLOAD:")
-    print(request.json)
+    # should be a workflow completed webhook
+    body = request.json
+    workflow_name = body.get("workflow_run", {}).get("name")
+    workflow_status = body.get("workflow_run", {}).get("status")
+    if workflow_name != "CI" or workflow_status != "completed":
+        logging.warning("Invalid workflow name or status")
 
     # deploy the latest artifact
     try:
