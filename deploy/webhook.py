@@ -83,6 +83,9 @@ def webhook_deploy():
         logging.warning("Invalid X-Hub-Signature-256")
         abort(403)
 
+    print("PAYLOAD:")
+    print(request.json)
+
     # deploy the latest artifact
     try:
         stop_server()
