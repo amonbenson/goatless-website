@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "goatless-website",
       port: 80,
-      script: "./.output/server/index.mjs",
+      script: "../.output/server/index.mjs",
       max_memory_restart: "1500M",
       env_production: {
         NODE_ENV: "production",
