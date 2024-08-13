@@ -11,6 +11,17 @@ module.exports = {
         exec_mode: "cluster",
         instances: "max"
       }
+    },
+    {
+      name: "deploy-webhook",
+      port: 8923,
+      script: "gunicorn -w 2 -b $HOST:$PORT webhook:app",
+      max_memory_restart: "500M",
+      env_production: {
+        PORT: 8923,
+        exec_mode: "cluster",
+        instances: "max"
+      }
     }
   ]
 };

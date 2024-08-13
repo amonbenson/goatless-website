@@ -25,6 +25,9 @@ DEPLOY_DESTINATION = os.getenv("DEPLOY_DESTINATION")
 DEPLOY_STOP_COMMAND = os.getenv("DEPLOY_STOP_COMMAND")
 DEPLOY_START_COMMAND = os.getenv("DEPLOY_START_COMMAND")
 
+HOST = os.getenv("HOST", "0.0.0.0")
+PORT = os.getenv("PORT", 8923)
+
 def download_artifact():
     base_url = f"https://api.github.com/repos/{GITHUB_REPOSITORY}/actions/artifacts"
     headers = {
@@ -91,4 +94,4 @@ def webhook_deploy():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8923)
+    app.run(host=HOST, port=PORT)
