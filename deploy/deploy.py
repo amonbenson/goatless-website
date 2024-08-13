@@ -5,6 +5,9 @@ import logging
 from zipfile import ZipFile
 from io import BytesIO
 from dotenv import load_dotenv
+from flask import Flask, request, abort
+import hmac
+import hashlib
 
 load_dotenv()
 
@@ -13,6 +16,10 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(mes
 GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
 GITHUB_ARTIFACT = os.getenv("GITHUB_ARTIFACT")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+
+WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET")
+if not WEBHOOK_SECRET:
+    raise ValueError("Missing WEBHOOK_SECRET")
 
 DEPLOY_DESTINATION = os.getenv("DEPLOY_DESTINATION")
 DEPLOY_STOP_COMMAND = os.getenv("DEPLOY_STOP_COMMAND")
@@ -56,9 +63,32 @@ def start_server():
     logging.info("Starting server")
     subprocess.check_call(DEPLOY_START_COMMAND, shell=True)
 
-if __name__ == "__main__":
+
+app = Flask(__name__)
+
+
+@app.route("/webhook/deploy", methods=["POST"])
+def webhook_deploy():
+    # verify the request signature
+    request_signature = request.headers.get("X-Hub-Signature-256")
+    if not request_signature:
+        logging.warning("Missing X-Hub-Signature-256")
+        abort(403)
+
+    payload_signature = f"sha256={hmac.new(WEBHOOK_SECRET.encode(), request.data, hashlib.sha256).hexdigest()}"
+    if not hmac.compare_digest(request_signature, payload_signature):
+        logging.warning("Invalid X-Hub-Signature-256")
+        abort(403)
+
+    # deploy the latest artifact
     try:
         stop_server()
         download_artifact()
     finally:
         start_server()
+
+    return "OK"
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8923)
