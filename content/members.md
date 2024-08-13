@@ -59,7 +59,9 @@ image: "/images/members/nico.jpg"
 ---
 ## Nico &centerdot; _Guitarist_
 
-Description of Nico goes here.
+Born in 2001 in Berlin, Nico has been playing the guitar for over 13 years. He began his musical journey with his school band, _LOUNGE ACT_. Alongside that, he joined Björn in the project _7Strokes_. Since 2020, Nico has been a part of _Goatless_, where he brings deep emotion to every string he touches &mdash; you can feel that. He lets his babies cry and sing.
+
+Nico delivers exceptional solos, both covers and original creations, on par with the best in the business. He is always on time, hitting every note with precision.
 ::
 
 ::member-section
