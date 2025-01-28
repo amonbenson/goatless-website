@@ -2,19 +2,23 @@
 import { RouterLink } from "vue-router";
 
 defineProps({
+  is: { type: String, default: "div" },
   text: { type: String, required: true },
   to: { type: String, required: true },
 });
 </script>
 
 <template>
-  <li>
+  <component :is="is">
     <RouterLink
       :to="to"
-      class="plain-link text-xl text-light opacity-50 hover:opacity-100 transition-opacity"
+      class="plain-link text-xl font-light text-light opacity-50 hover:opacity-100 transition-opacity"
       active-class="opacity-100"
     >
-      {{ text }}
+      <template v-if="text">
+        {{ text }}
+      </template>
+      <slot v-else />
     </RouterLink>
-  </li>
+  </component>
 </template>

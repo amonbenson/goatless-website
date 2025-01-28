@@ -1,8 +1,16 @@
+<script setup>
+defineProps({
+  is: { type: String, default: "div" },
+});
+</script>
+
 <template>
-  <RouterLink
-    to="/"
-    class="plain-link text-2xl font-bold"
-  >
-    G<span class="text-accent">O</span>ATLESS
-  </RouterLink>
+  <component :is="is">
+    <RouterLink
+      to="/"
+      class="plain-link text-3xl"
+    >
+      G<span class="text-accent">O</span>ATLESS
+    </RouterLink>
+  </component>
 </template>
