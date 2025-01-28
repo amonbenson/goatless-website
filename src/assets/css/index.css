@@ -14,9 +14,9 @@
   --color-light: rgb(249 250 251);
   --color-muted: rgb(156 163 175);
 
-  --color-primary: rgb(20 184 166);
-  --color-secondary: rgb(254 158 11);
-  --color-accent: rgb(244 63 94);
+  --color-primary: #EE4237;
+  --color-secondary: #EE4237;
+  --color-accent: #EE4237;
 
   --opacity-muted: 50%;
 }
@@ -63,7 +63,11 @@
   }
 
   body {
-    @apply bg-dark text-light select-none;
+    @apply bg-dark text-light select-none w-full h-full;
+  }
+
+  #app {
+    @apply flex flex-col w-screen h-screen;
   }
 
   h1 {
@@ -80,5 +84,9 @@
 
   h4 {
     @apply text-base font-bold;
+  }
+
+  a:not(.plain-link) {
+    @apply text-accent;
   }
 }
