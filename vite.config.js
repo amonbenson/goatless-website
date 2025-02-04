@@ -6,9 +6,13 @@ import components from "unplugin-vue-components/vite";
 import markdown from "unplugin-vue-markdown/vite";
 import vueRouter from "unplugin-vue-router/vite";
 
+const base = process.env.BASE_URL ?? "/";
+// eslint-disable-next-line no-console
+console.info("Using base URL:", base);
+
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.BASE_URL ?? "/",
+  base,
   plugins: [
     vueRouter({
       extensions: [".vue", ".md"],
