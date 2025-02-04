@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router/auto";
 import { routes } from "vue-router/auto-routes";
 
 const router = createRouter({
-  history: createWebHistory(), // TODO: add process.env.BASE_URL
+  history: createWebHistory(import.meta.env.BASE_URL),
   // scrollBehavior(to, _from, savedPosition) {
   //   // Scroll to top on navigation
   //   if (savedPosition) {

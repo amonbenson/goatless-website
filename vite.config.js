@@ -24,6 +24,7 @@ export default defineConfig({
         typographer: true,
       },
       headEnabled: true,
+      wrapperComponent: "MarkdownBody",
       wrapperDiv: false,
     }),
     components({

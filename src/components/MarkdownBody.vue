@@ -5,7 +5,11 @@ defineProps({
 </script>
 
 <template>
-  <div class="">
+  <article
+    :class="{
+      'flex flex-col justify-center items-center': frontmatter.center,
+    }"
+  >
     <slot />
-  </div>
+  </article>
 </template>

@@ -12,7 +12,10 @@ const menuOpen = defineModel("menuOpen", { type: Boolean });
 </script>
 
 <template>
-  <ScrollContainer is="header">
+  <ScrollContainer
+    is="header"
+    class="bg-darker"
+  >
     <nav class="relative w-full h-12 flex items-center justify-between">
       <div class="sm:hidden w-8 h-full" />
       <HeaderBanner />

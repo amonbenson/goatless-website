@@ -15,8 +15,11 @@ const socials = {
 </script>
 
 <template>
-  <ScrollContainer is="header">
-    <nav class="w-full h-12 flex items-center justify-center sm:justify-between">
+  <ScrollContainer
+    is="header"
+    class="bg-darker"
+  >
+    <nav class="w-full h-8 flex items-center justify-center sm:justify-between">
       <ul class="h-full hidden sm:flex items-center justify-center space-x-12">
         <NavItem
           is="li"

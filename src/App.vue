@@ -11,9 +11,9 @@ import FooterBar from "@/components/FooterBar.vue";
     is="main"
     class="flex-1"
   >
-    <article class="space-y-8">
-      <RouterView />
-    </article>
+    <div class="w-full min-h-full py-8 flex items-center justify-center">
+      <RouterView class="w-full" />
+    </div>
   </ScrollContainer>
 
   <FooterBar class="flex-none" />
