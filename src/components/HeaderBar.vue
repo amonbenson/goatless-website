@@ -14,10 +14,10 @@ const menuOpen = defineModel("menuOpen", { type: Boolean });
 <template>
   <ScrollContainer
     is="header"
-    class="bg-darker"
+    class="bg-darker/90 backdrop-blur-xl"
   >
-    <nav class="relative w-full h-12 flex items-center justify-between">
-      <div class="sm:hidden w-8 h-full" />
+    <nav class="size-full flex items-center justify-between sm:justify-center space-x-12">
+      <div class="sm:hidden size-8 h-full" />
       <HeaderBanner />
       <ul class="h-full hidden sm:flex items-center justify-end space-x-12">
         <NavItem
@@ -31,20 +31,16 @@ const menuOpen = defineModel("menuOpen", { type: Boolean });
       </ul>
       <div class="sm:hidden w-8 h-full overflow-visible flex items-center justify-end">
         <button
-          class="w-8 h-8 cursor-pointer relative"
+          class="size-8 cursor-pointer relative"
           @click="menuOpen = !menuOpen"
         >
-          <i-iconoir-menu
-            class="absolute left-1/2 top-1/2 -translate-1/2 size-6 transition-all duration-500"
+          <i-mingcute-menu-line
+            class="absolute left-0 top-0 size-full transition-all duration-500"
             :class="menuOpen ? 'opacity-0 rotate-45' : 'opacity-100'"
-            :width="undefined"
-            :height="undefined"
           />
-          <i-iconoir-xmark
-            class="absolute left-1/2 top-1/2 -translate-1/2 size-8 transition-all duration-500"
+          <i-mingcute-close-line
+            class="absolute left-0 top-0 size-full transition-all duration-500"
             :class="menuOpen ? 'opacity-100' : 'opacity-0 -rotate-45'"
-            :width="undefined"
-            :height="undefined"
           />
         </button>
       </div>

@@ -2,6 +2,8 @@
 import ScrollContainer from "./ScrollContainer.vue";
 import NavItem from "./NavItem.vue";
 
+const GITHUB_LINK = import.meta.env.VITE_FOOTER_GITHUB_LINK;
+
 const items = [
   { text: "contact", to: "/contact" },
   { text: "legal", to: "/legal" },
@@ -17,26 +19,16 @@ const socials = {
 <template>
   <ScrollContainer
     is="header"
-    class="bg-darker"
+    class="bg-darker/95 backdrop-blur-xl"
   >
-    <nav class="w-full h-8 flex items-center justify-center sm:justify-between">
-      <ul class="h-full hidden sm:flex items-center justify-center space-x-12">
-        <NavItem
-          is="li"
-          v-for="{ text, to } in items"
-          :key="text"
-          :to="to"
-        >
-          {{ text }}
-        </NavItem>
-      </ul>
+    <nav class="size-full flex items-center justify-between">
       <ul class="h-full flex items-center justify-center space-x-4">
         <NavItem
           is="li"
           :to="socials.instagram"
           external
         >
-          <i-iconoir-instagram
+          <i-mingcute-instagram-line
             width="24"
             height="24"
           />
@@ -46,7 +38,7 @@ const socials = {
           :to="socials.tiktok"
           external
         >
-          <i-iconoir-tiktok
+          <i-mingcute-tiktok-line
             width="24"
             height="24"
           />
@@ -56,12 +48,33 @@ const socials = {
           :to="socials.youtube"
           external
         >
-          <i-iconoir-youtube
+          <i-mingcute-youtube-line
             width="24"
             height="24"
           />
         </NavItem>
       </ul>
+
+      <ul class="h-full flex items-center justify-center space-x-12">
+        <NavItem
+          is="li"
+          v-for="{ text, to } in items"
+          :key="text"
+          :to="to"
+          small
+        >
+          {{ text }}
+        </NavItem>
+      </ul>
+
+      <NavItem
+        is="p"
+        :to="GITHUB_LINK"
+        external
+        tiny
+      >
+        powered by no goats
+      </NavItem>
     </nav>
   </ScrollContainer>
 </template>

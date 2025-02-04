@@ -5,16 +5,16 @@ import FooterBar from "@/components/FooterBar.vue";
 </script>
 
 <template>
-  <HeaderBar class="flex-none" />
+  <HeaderBar class="fixed left-0 top-0 w-full h-12 z-30" />
 
   <ScrollContainer
     is="main"
-    class="flex-1"
+    class="w-screen h-screen"
   >
-    <div class="w-full min-h-full py-8 flex items-center justify-center">
+    <div class="w-full min-h-full pt-20 pb-16 flex items-center justify-center">
       <RouterView class="w-full" />
     </div>
   </ScrollContainer>
 
-  <FooterBar class="flex-none" />
+  <FooterBar class="hidden sm:block fixed left-0 bottom-0 w-full h-8 z-30" />
 </template>

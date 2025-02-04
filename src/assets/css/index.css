@@ -63,11 +63,7 @@
   }
 
   body {
-    @apply bg-dark text-light select-none w-full h-full;
-  }
-
-  #app {
-    @apply flex flex-col w-screen h-screen;
+    @apply bg-darker text-light select-none w-full h-full;
   }
 
   h1 {
