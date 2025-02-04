@@ -1,8 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router/auto";
 import { routes } from "vue-router/auto-routes";
 
+// get /endpoint part of the URL
+const base = import.meta.env.BASE_URL;
+const baseRoute = base.replace(window.location.origin, "");
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(baseRoute),
   // scrollBehavior(to, _from, savedPosition) {
   //   // Scroll to top on navigation
   //   if (savedPosition) {
