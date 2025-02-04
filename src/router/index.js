@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router/auto";
 import { routes } from "vue-router/auto-routes";
 
-// get /endpoint part of the URL
+// extract the endpoint part of the base URL
 const base = import.meta.env.BASE_URL;
-const baseRoute = base.replace(window.location.origin, "");
+const baseRoute = base.replace(/^https?:\/\/[^\/]+/, "");
 
 const router = createRouter({
   history: createWebHistory(baseRoute),
