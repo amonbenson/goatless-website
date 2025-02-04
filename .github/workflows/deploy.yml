@@ -21,7 +21,11 @@ jobs:
         run: yarn install
 
       - name: Build project
-        run: yarn build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BASE_URL=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.html_url')
+          yarn build
 
       - name: Upload Github Pages Artifact
         uses: actions/upload-pages-artifact@v3.0.1

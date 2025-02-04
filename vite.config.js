@@ -8,7 +8,7 @@ import vueRouter from "unplugin-vue-router/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === "production" ? "/hourglass/" : "/",
+  base: process.env.BASE_URL ?? "/",
   plugins: [
     vueRouter({
       extensions: [".vue", ".md"],
