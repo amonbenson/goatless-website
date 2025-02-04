@@ -3,13 +3,32 @@ import vue from "@vitejs/plugin-vue";
 import icons from "unplugin-icons/vite";
 import iconsResolver from "unplugin-icons/resolver";
 import components from "unplugin-vue-components/vite";
+import markdown from "unplugin-vue-markdown/vite";
+import vueRouter from "unplugin-vue-router/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
   base: process.env.NODE_ENV === "production" ? "/hourglass/" : "/",
   plugins: [
-    vue(),
+    vueRouter({
+      extensions: [".vue", ".md"],
+      importMode: "async",
+    }),
+    vue({
+      include: [/\.vue$/, /\.md$/],
+    }),
+    markdown({
+      markdownitOptions: {
+        html: true,
+        linkify: true,
+        typographer: true,
+      },
+      headEnabled: true,
+      wrapperDiv: false,
+    }),
     components({
+      extensions: ["vue", "md"],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [
         iconsResolver(),
       ],
