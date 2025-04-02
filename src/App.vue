@@ -5,6 +5,10 @@ import FooterBar from "@/components/FooterBar.vue";
 </script>
 
 <template>
+  <BackdropMedia
+    class="fixed inset-0 pointer-events-none -z-10"
+  />
+
   <HeaderBar class="fixed left-0 top-0 w-full h-12 z-30" />
 
   <ScrollContainer

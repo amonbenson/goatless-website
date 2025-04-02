@@ -14,7 +14,7 @@ const menuOpen = defineModel("menuOpen", { type: Boolean });
 <template>
   <ScrollContainer
     is="header"
-    class="bg-darker/90 backdrop-blur-xl"
+    class="bg-darker/90 backdrop-blur-xl select-none"
   >
     <nav class="size-full flex items-center justify-between sm:justify-center space-x-12">
       <div class="sm:hidden size-8 h-full" />

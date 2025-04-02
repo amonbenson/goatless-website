@@ -18,5 +18,6 @@ Goatless
 
 <p v-html="address" class="mb-4" />
 
-Phone: <a :href="`tel:${phone.replaceAll(' ', '')}`">{{ phone }}</a><br>
+Phone: <a :href="`tel:${phone.replaceAll(' ', '')}`">{{ phone }}</a>
+
 Email: <a :href="`mailto:${email}`">{{ email }}</a>

@@ -19,7 +19,7 @@ const socials = {
 <template>
   <ScrollContainer
     is="header"
-    class="bg-darker/95 backdrop-blur-xl"
+    class="bg-darker/95 backdrop-blur-xl select-none"
   >
     <nav class="size-full flex items-center justify-between">
       <ul class="h-full flex items-center justify-center space-x-4">
