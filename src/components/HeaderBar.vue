@@ -3,10 +3,9 @@ import ScrollContainer from "./ScrollContainer.vue";
 import HeaderBanner from "./HeaderBanner.vue";
 import NavItem from "./NavItem.vue";
 
-const items = [
-  { text: "shows", to: "/shows" },
-  { text: "members", to: "/members" },
-];
+defineProps({
+  items: { type: Array, required: true },
+});
 
 const menuOpen = defineModel("menuOpen", { type: Boolean });
 </script>
@@ -14,12 +13,12 @@ const menuOpen = defineModel("menuOpen", { type: Boolean });
 <template>
   <ScrollContainer
     is="header"
-    class="bg-darker/90 backdrop-blur-xl select-none"
+    class="bg-darker/50 backdrop-blur-3xl select-none"
   >
-    <nav class="size-full flex items-center justify-between sm:justify-center space-x-12">
+    <nav class="size-full flex items-center justify-between sm:justify-center gap-12">
       <div class="sm:hidden size-8 h-full" />
       <HeaderBanner />
-      <ul class="h-full hidden sm:flex items-center justify-end space-x-12">
+      <ul class="h-full hidden sm:flex items-center justify-end gap-12">
         <NavItem
           is="li"
           v-for="{ text, to } in items"

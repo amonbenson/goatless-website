@@ -4,25 +4,19 @@ import NavItem from "./NavItem.vue";
 
 const GITHUB_LINK = import.meta.env.VITE_FOOTER_GITHUB_LINK;
 
-const items = [
-  { text: "contact", to: "/contact" },
-  { text: "legal", to: "/legal" },
-];
-
-const socials = {
-  instagram: "https://www.instagram.com/goatless_official",
-  tiktok: "https://www.tiktok.com/@goatless_official",
-  youtube: "https://www.youtube.com/@goatless_official",
-};
+defineProps({
+  items: { type: Array, required: true },
+  socials: { type: Object, required: true },
+});
 </script>
 
 <template>
   <ScrollContainer
     is="header"
-    class="bg-darker/95 backdrop-blur-xl select-none"
+    class="bg-darker/50 backdrop-blur-3xl select-none"
   >
     <nav class="size-full flex items-center justify-between">
-      <ul class="h-full flex items-center justify-center space-x-4">
+      <ul class="h-full flex items-center justify-center gap-4">
         <NavItem
           is="li"
           :to="socials.instagram"
@@ -55,7 +49,7 @@ const socials = {
         </NavItem>
       </ul>
 
-      <ul class="h-full flex items-center justify-center space-x-12">
+      <ul class="h-full flex items-center justify-center gap-12">
         <NavItem
           is="li"
           v-for="{ text, to } in items"
@@ -73,7 +67,7 @@ const socials = {
         external
         tiny
       >
-        powered by no goats
+        powered without goats
       </NavItem>
     </nav>
   </ScrollContainer>

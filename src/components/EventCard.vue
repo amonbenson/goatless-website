@@ -58,8 +58,8 @@ const offer = computed(() => event.value.offers?.length
 </script>
 
 <template>
-  <div class="flex gap-4 h-24 justify-stretch items-stretch">
-    <div class="flex-none w-24 p-4 flex flex-col justify-center items-center bg-dark cursor-pointer">
+  <div class="hidden sm:flex gap-4 h-24 justify-stretch items-stretch">
+    <div class="flex-none w-24 p-4 flex flex-col justify-center items-center bg-dark/50 backdrop-blur-3xl rounded-sm">
       <div class="text-lg text-accent">
         {{ month }}
       </div>
@@ -68,19 +68,19 @@ const offer = computed(() => event.value.offers?.length
       </div>
     </div>
 
-    <div class="flex-1 p-6 flex justify-stretch items-stretch gap-4 bg-dark">
-      <div class="flex-1 flex flex-col justify-center items-start gap-1">
-        <h3>
+    <div class="flex-1 min-w-0 p-6 flex justify-stretch items-center gap-4 bg-dark/50 backdrop-blur-3xl rounded-sm">
+      <div class="flex-1 min-w-0 flex flex-col justify-center items-stretch gap-1">
+        <h3 class="truncate">
           <ExternalLink
             class="plain-link"
             :to="event.url"
           >
-            {{ event.title }}
+            {{ event.title }}<!--&ensp;&#8226;&ensp;{{ time }}-->
           </ExternalLink>
         </h3>
         <ExternalLink
           v-if="event.venue"
-          class="text-muted"
+          class="text-muted truncate"
           :to="locationUrl"
         >
           {{ location }}
@@ -95,9 +95,45 @@ const offer = computed(() => event.value.offers?.length
         <span class="text-xl">{{ offer.text }}</span>
       </UiButton>
     </div>
+  </div>
 
-    <!-- <UiButton class="flex-none w-24 h-24">
-      <span class="text-xl">Tickets</span>
-    </UiButton> -->
+  <div class="flex sm:hidden flex-col gap-4 p-4 justify-stretch items-stretch bg-dark/50 backdrop-blur-3xl rounded-sm">
+    <div class="flex gap-4 h-24 justify-stretch items-stretch">
+      <div class="flex-none flex flex-col justify-center items-center">
+        <div class="text-lg text-accent">
+          {{ month }}
+        </div>
+        <div class="text-4xl">
+          {{ day }}
+        </div>
+      </div>
+
+      <div class="flex-1 min-w-0 flex justify-stretch items-center gap-4">
+        <div class="flex-1 min-w-0 flex flex-col justify-center items-stretch gap-1">
+          <h3 class="truncate">
+            <ExternalLink
+              class="plain-link"
+              :to="event.url"
+            >
+              {{ event.title }}<!--&ensp;&#8226;&ensp;{{ time }}-->
+            </ExternalLink>
+          </h3>
+          <ExternalLink
+            v-if="event.venue"
+            class="text-muted truncate"
+            :to="locationUrl"
+          >
+            {{ location }}
+          </ExternalLink>
+        </div>
+      </div>
+    </div>
+
+    <UiButton
+      :to="offer.url"
+      external
+    >
+      <span class="text-xl">{{ offer.text }}</span>
+    </UiButton>
   </div>
 </template>

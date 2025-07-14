@@ -50,7 +50,6 @@ onMounted(async () => {
   v-if="events !== 'loading'"
   class="flex flex-col gap-4 py-4"
 >
-
 <div v-if="!events.length" class="italic">
 No upcoming shows. <RouterLink class="italic" to="/contact">Consider booking us here.</RouterLink>
 </div>

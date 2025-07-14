@@ -5,6 +5,7 @@ import iconsResolver from "unplugin-icons/resolver";
 import components from "unplugin-vue-components/vite";
 import markdown from "unplugin-vue-markdown/vite";
 import vueRouter from "unplugin-vue-router/vite";
+import svgLoader from "vite-svg-loader";
 
 const base = process.env.BASE_URL ?? "/";
 // eslint-disable-next-line no-console
@@ -39,6 +40,7 @@ export default defineConfig({
       ],
     }),
     icons(),
+    svgLoader(),
   ],
   resolve: {
     alias: {
