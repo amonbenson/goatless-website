@@ -1,5 +1,5 @@
 <script setup>
-import { computed, toRefs, watch } from "vue";
+import { computed, toRefs } from "vue";
 import UiButton from "./UiButton.vue";
 import ExternalLink from "./ExternalLink.vue";
 
@@ -15,10 +15,10 @@ const datetime = computed((() => new Date(event.value.datetime)));
 
 const month = computed(() => datetime.value.toLocaleDateString([], { month: "short" }).toUpperCase());
 const day = computed(() => datetime.value.toLocaleDateString([], { day: "2-digit" }));
-const time = computed(() => datetime.value.toLocaleTimeString([], {
-  hour: "2-digit",
-  minute: "2-digit",
-}));
+// const time = computed(() => datetime.value.toLocaleTimeString([], {
+//   hour: "2-digit",
+//   minute: "2-digit",
+// }));
 
 // extract location
 const location = computed(() => {
