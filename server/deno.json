@@ -1,0 +1,15 @@
+{
+  "name": "goatless-website-server",
+  "exports": {
+    ".": "./server.js"
+  },
+  "version": "1.0.0",
+  "tasks": {
+    "dev": "deno run --allow-net --allow-read --allow-env --env-file=.env --env-file=.env.local --watch server.js"
+  },
+  "imports": {
+    "@oak/oak": "jsr:@oak/oak@^17.1.5",
+    "@tajpouria/cors": "jsr:@tajpouria/cors@^1.2.1",
+    "axios": "npm:axios@^1.10.0"
+  }
+}

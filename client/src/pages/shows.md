@@ -8,8 +8,7 @@ import axios from "axios";
 import { useBackdropStore } from "@/store/backdrop";
 
 const backdropStore = useBackdropStore();
-const app_id = import.meta.env["VITE_BIT_API_KEY"] ?? null;
-const artist_id = import.meta.env["VITE_BIT_ARTIST_ID"] ?? null;
+const api_base_url = import.meta.env["VITE_API_BASE_URL"] ?? null;
 
 const events = ref("loading");
 
@@ -18,22 +17,9 @@ onMounted(() => {
 });
 
 onMounted(async () => {
-  if (!app_id) {
-    console.warn("missing app id");
-    return;
-  }
-  if (!artist_id) {
-    console.warn("missing artist id");
-    return;
-  }
-
   // fetch upcoming events
   try {
-    const res = await axios.get(`https://rest.bandsintown.com/artists/id_${artist_id}/events/`, {
-      params: {
-        app_id,
-        date: "upcoming",
-      },
+    const res = await axios.get(`${api_base_url}/events`, {
       validateStatus: (status) => status === 200,
     });
     events.value = res.data.filter(event => !!event.title);

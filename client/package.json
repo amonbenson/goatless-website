@@ -1,14 +1,15 @@
 {
-  "name": "hourglass",
+  "name": "goatless-website-client",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ignore-pattern 'dist/*' --ignore-pattern 'node_modules/*'",
-    "lint:fix": "eslint .  --ignore-pattern 'dist/*' --ignore-pattern 'node_modules/*' --fix"
+    "lint:fix": "eslint .  --ignore-pattern 'dist/*' --ignore-pattern 'node_modules/*' --fix",
+    "server-dev": "vite build && deno run --allow-read --allow-net --watch server.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.0",
@@ -30,6 +31,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "eslint": "^9.19.0",
     "eslint-plugin-vue": "^9.32.0",
+    "oak": "^9.0.0",
     "unplugin-icons": "^22.0.0",
     "unplugin-vue-components": "^28.0.0",
     "unplugin-vue-router": "^0.11.2",

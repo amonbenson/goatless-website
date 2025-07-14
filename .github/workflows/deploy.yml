@@ -24,8 +24,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # export BASE_URL=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.html_url')
-          export BASE_URL="https://goatlessband.com"
+          export BASE_URL=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.html_url')
           yarn build
 
       - name: Upload Github Pages Artifact

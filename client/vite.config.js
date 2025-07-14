@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import icons from "unplugin-icons/vite";
 import iconsResolver from "unplugin-icons/resolver";
@@ -7,13 +7,12 @@ import markdown from "unplugin-vue-markdown/vite";
 import vueRouter from "unplugin-vue-router/vite";
 import svgLoader from "vite-svg-loader";
 
-const base = process.env.BASE_URL ?? "/";
-// eslint-disable-next-line no-console
-console.info("Using base URL:", base);
+// load vite environment variables
+const viteEnv = loadEnv(process.env.NODE_ENV, process.cwd());
 
 // https://vite.dev/config/
 export default defineConfig({
-  base,
+  base: viteEnv.VITE_BASE_URL,
   plugins: [
     vueRouter({
       extensions: [".vue", ".md"],
