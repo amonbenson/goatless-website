@@ -57,5 +57,7 @@ app.use(async (ctx) => {
 });
 
 await app.listen({
-  port: Deno.env.get("PORT") || 8080
+  port: Deno.env.get("PORT") || 8080,
+  cert: Deno.env.get("SSL_CERT"),
+  key: Deno.env.get("SSL_KEY"),
 });
