@@ -56,8 +56,24 @@ app.use(async (ctx) => {
   }
 });
 
+const port = Deno.env.get("PORT") || 80;
+
+const secure = Deno.env.get("SSL_CERT") && Deno.env.get("SSL_KEY");
+if (secure) {
+  const cert = await Deno.readTextFile(Deno.env.get("SSL_CERT"));
+  const key = await Deno.readTextFile(Deno.env.get("SSL_KEY"));
+}
+
+app.addEventListener("listen", () => {
+  console.log(`Server is running on ${secure ? "https" : "http"}://localhost:${Deno.env.get("PORT") || 8080}`);
+  if (secure) {
+    console.log("SSL is enabled");
+  }
+});
+
 await app.listen({
-  port: Deno.env.get("PORT") || 8080,
-  cert: Deno.env.get("SSL_CERT"),
-  key: Deno.env.get("SSL_KEY"),
+  port,
+  secure,
+  cert,
+  key,
 });
