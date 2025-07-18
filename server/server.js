@@ -83,8 +83,8 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
     // use a timeout to ensure the server has time to respond before exiting
     setTimeout(() => {
       console.log("Rebuilding code...");
-      const cmd = new Deno.Command("bash", {
-        args: ["./pull_build_restart.sh"],
+      const cmd = new Deno.Command("/usr/bin/bash", {
+        args: [""],
         detach: true,
       });
       const child = cmd.spawn();
