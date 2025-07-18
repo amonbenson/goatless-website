@@ -1,5 +1,6 @@
 import { Application, Router, send } from "jsr:@oak/oak";
 import { oakCors } from "jsr:@tajpouria/cors";
+import crypto from "node:crypto";
 import axios from "axios";
 
 const router = new Router();
@@ -41,6 +42,42 @@ app.use(oakCors({
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+
+const WEBHOOK_SECRET = Deno.env.get("WEBHOOK_SECRET");
+const WEBHOOK_REF = Deno.env.get("WEBHOOK_REF");
+
+const webhookRouter = new Router();
+
+webhookRouter.post("/internal/webhook", async (ctx) => {
+  // get the provided signature
+  const signature = ctx.request.headers.get("X-Hub-Signature-256");
+  if (!signature) {
+    ctx.response.status = 400;
+    ctx.response.body = { error: "Missing signature" };
+    return;
+  }
+
+  // receive the request body and verify the signature
+  const body = await ctx.request.body().value;
+  const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
+  hmac.update(JSON.stringify(body));
+  const expectedSignature = `sha256=${hmac.digest("hex")}`;
+  if (signature !== expectedSignature) {
+    ctx.response.status = 403;
+    ctx.response.body = { error: "Invalid signature" };
+    return;
+  }
+
+  console.log("Received valid webhook request:", body);
+
+  // check if code was pushed to main branch
+  if (body.action === "push" && body.ref === WEBHOOK_REF) {
+    console.log("Content was pushed to main branch, triggering automatic download...");
+
+    // download the latest content from the repository
+  }
+});
+
 app.use(async (ctx) => {
   try {
     // try to server static files
@@ -54,6 +91,10 @@ app.use(async (ctx) => {
       root: `${Deno.cwd()}/../client/dist`,
     });
   }
+});
+
+app.addEventListener("listen", (event) => {
+  console.log(`Server is running on https://localhost:${event.port}`);
 });
 
 await app.listen({
