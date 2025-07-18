@@ -58,9 +58,10 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
   }
 
   const body = await ctx.request.body.text();
+  console.log("Received webhook request body:", body);
   const sig = Buffer.from(ctx.request.headers.get("X-Hub-Signature-256") ?? "", "utf-8");
   const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
-  const digest = Buffer.from(`sha256=${hmac.update(req.rawBody).digest('hex')}`, "utf8");
+  const digest = Buffer.from(`sha256=${hmac.update(body).digest('hex')}`, "utf8");
   if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
     ctx.response.status = 403;
     ctx.response.body = { error: "Invalid signature" };
