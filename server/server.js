@@ -78,6 +78,10 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
   }
 });
 
+app.use(webhookRouter.routes());
+app.use(webhookRouter.allowedMethods());
+
+
 app.use(async (ctx) => {
   try {
     // try to server static files
