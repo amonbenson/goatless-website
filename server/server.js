@@ -82,6 +82,7 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
     // detach the process so it continues to run when the server is stopped
     // use a timeout to ensure the server has time to respond before exiting
     setTimeout(() => {
+      console.log("Rebuilding code...");
       const cmd = new Deno.Command("bash", {
         args: ["./pull_build_restart.sh"],
         detach: true,
@@ -89,6 +90,7 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
       const child = cmd.spawn();
       child.output();
       child.unref();
+      console.log("Exiting the current server...");
       Deno.exit(0);
     }, 1000);
   }
