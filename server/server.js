@@ -1,5 +1,6 @@
 import { Application, Router, send } from "jsr:@oak/oak";
 import { oakCors } from "jsr:@tajpouria/cors";
+import { Buffer } from "node:buffer";
 import crypto from "node:crypto";
 import axios from "axios";
 
@@ -49,25 +50,18 @@ const WEBHOOK_REF = Deno.env.get("WEBHOOK_REF");
 const webhookRouter = new Router();
 
 webhookRouter.post("/internal/webhook", async (ctx) => {
-  // get the provided signature
-  const signature = ctx.request.headers.get("X-Hub-Signature-256");
-  if (!signature) {
-    ctx.response.status = 400;
-    ctx.response.body = { error: "Missing signature" };
-    return;
-  }
-
   // receive the request body and verify the signature
   if (!ctx.request.hasBody) {
     ctx.response.status = 400;
     ctx.response.body = { error: "Missing request body" };
     return;
   }
-  const body = await ctx.request.body.text()
+
+  const body = await ctx.request.body.text();
+  const sig = Buffer.from(ctx.request.headers.get("X-Hub-Signature-256") ?? "", "utf-8");
   const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
-  hmac.update(JSON.stringify(body));
-  const expectedSignature = `sha256=${hmac.digest("hex")}`;
-  if (signature !== expectedSignature) {
+  const digest = Buffer.from(`sha256=${hmac.update(req.rawBody).digest('hex')}`, "utf8");
+  if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
     ctx.response.status = 403;
     ctx.response.body = { error: "Invalid signature" };
     return;
