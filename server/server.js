@@ -57,21 +57,22 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
     return;
   }
 
-  const body = await ctx.request.body.text();
-  console.log("Received webhook request body:", body);
+  const rawBody = await ctx.request.body.text();
   const sig = Buffer.from(ctx.request.headers.get("X-Hub-Signature-256") ?? "", "utf-8");
   const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
-  const digest = Buffer.from(`sha256=${hmac.update(body).digest('hex')}`, "utf8");
+  const digest = Buffer.from(`sha256=${hmac.update(rawBody).digest('hex')}`, "utf8");
   if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
     ctx.response.status = 403;
     ctx.response.body = { error: "Invalid signature" };
     return;
   }
 
+  // decode body from form/urlencoded
+  const body = new URLSearchParams(rawBody);
   console.log("Received valid webhook request:", body);
 
   // check if code was pushed to main branch
-  if (body.action === "push" && body.ref === WEBHOOK_REF) {
+  if (rawBody.action === "push" && rawBody.ref === WEBHOOK_REF) {
     console.log("Content was pushed to main branch, triggering automatic download...");
 
     // download the latest content from the repository
