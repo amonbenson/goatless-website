@@ -1,0 +1,9 @@
+{
+  "name": "goatless-website-client",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'Building client ...' && mkdir -p dist && echo 'Goatless Website' > dist/index.html"
+  },
+  "author": "Amon Benson",
+  "license": "ISC"
+}

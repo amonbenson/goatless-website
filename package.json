@@ -1,0 +1,10 @@
+{
+  "name": "goatless-website",
+  "version": "1.0.0",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "author": "Amon Benson",
+  "license": "ISC"
+}
