@@ -1,0 +1,12 @@
+{
+  "name": "goatless-website",
+  "processes": [
+    {
+      "id": "server",
+      "cmd": "deno run --allow-net --allow-read --allow-env --env-file=.env --env-file=.env.local server.js",
+      "autostart": true,
+      "watch": ["server.js", ".env", ".env.local"],
+      "restart": "always"
+    }
+  ]
+}
