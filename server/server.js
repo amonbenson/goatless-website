@@ -67,8 +67,8 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
     return;
   }
 
-  // decode body from form/urlencoded
-  const body = new URLSearchParams(rawBody);
+  // decode the body
+  const body = JSON.parse(new URLSearchParams(rawBody).get("payload")) || {};
   console.log("Received valid webhook request:", body);
 
   // check if code was pushed to main branch
