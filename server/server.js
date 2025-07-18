@@ -76,6 +76,10 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
 
     // download the latest content from the repository
   }
+
+  ctx.response.status = 200;
+  ctx.response.body = { message: "Webhook received and verified" };
+  return;
 });
 
 app.use(webhookRouter.routes());
