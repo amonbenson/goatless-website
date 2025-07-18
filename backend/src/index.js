@@ -3,7 +3,7 @@ import express from "express";
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Goatless API!");
+  res.send("The backend is working!");
 });
 
 const PORT = process.env.PORT || 5000;
