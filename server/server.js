@@ -75,7 +75,7 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
   console.log("Received valid webhook request:", body);
 
   // check if code was pushed to main branch
-  if (rawBody.action === "push" && rawBody.ref === WEBHOOK_REF && rawBody.repository?.url === WEBHOOK_REPO_URL) {
+  if (body.action === "push" && body.ref === WEBHOOK_REF && body.repository?.url === WEBHOOK_REPO_URL) {
     console.log("Code pushed to main branch, updating content...");
 
     // run pull_build_restart.sh script
