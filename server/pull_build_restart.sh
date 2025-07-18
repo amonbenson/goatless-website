@@ -1,9 +1,8 @@
 #!/bin/bash
 
-pup disable-service
-killall -9 deno
+pup stop all
 
 git pull origin main
 deno install --allow-scripts
 
-pup enable-service
+pup restart all
