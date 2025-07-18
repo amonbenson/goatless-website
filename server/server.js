@@ -52,56 +52,56 @@ const WEBHOOK_REPO_URL = Deno.env.get("WEBHOOK_REPO_URL");
 
 const webhookRouter = new Router();
 
-webhookRouter.post("/internal/webhook", async (ctx) => {
-  // receive the request body and verify the signature
-  if (!ctx.request.hasBody) {
-    ctx.response.status = 400;
-    ctx.response.body = { error: "Missing request body" };
-    return;
-  }
+// webhookRouter.post("/internal/webhook", async (ctx) => {
+//   // receive the request body and verify the signature
+//   if (!ctx.request.hasBody) {
+//     ctx.response.status = 400;
+//     ctx.response.body = { error: "Missing request body" };
+//     return;
+//   }
 
-  const rawBody = await ctx.request.body.text();
-  const sig = Buffer.from(ctx.request.headers.get("X-Hub-Signature-256") ?? "", "utf-8");
-  const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
-  const digest = Buffer.from(`sha256=${hmac.update(rawBody).digest('hex')}`, "utf8");
-  if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
-    ctx.response.status = 403;
-    ctx.response.body = { error: "Invalid signature" };
-    return;
-  }
+//   const rawBody = await ctx.request.body.text();
+//   const sig = Buffer.from(ctx.request.headers.get("X-Hub-Signature-256") ?? "", "utf-8");
+//   const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
+//   const digest = Buffer.from(`sha256=${hmac.update(rawBody).digest('hex')}`, "utf8");
+//   if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
+//     ctx.response.status = 403;
+//     ctx.response.body = { error: "Invalid signature" };
+//     return;
+//   }
 
-  // decode the body
-  const body = JSON.parse(new URLSearchParams(rawBody).get("payload")) || {};
-  console.log("Received valid webhook request:", body);
+//   // decode the body
+//   const body = JSON.parse(new URLSearchParams(rawBody).get("payload")) || {};
+//   console.log("Received valid webhook request:", body);
 
-  // check if code was pushed to main branch
-  if (body.ref === WEBHOOK_REF && body.repository?.url === WEBHOOK_REPO_URL) {
-    console.log("Code pushed to main branch, updating content...");
+//   // check if code was pushed to main branch
+//   if (body.ref === WEBHOOK_REF && body.repository?.url === WEBHOOK_REPO_URL) {
+//     console.log("Code pushed to main branch, updating content...");
 
-    // run pull_build_restart.sh script
-    // detach the process so it continues to run when the server is stopped
-    // use a timeout to ensure the server has time to respond before exiting
-    setTimeout(() => {
-      console.log("Rebuilding code...");
-      const cmd = new Deno.Command("/usr/bin/bash", {
-        args: [""],
-        detach: true,
-      });
-      const child = cmd.spawn();
-      child.output();
-      child.unref();
-      console.log("Exiting the current server...");
-      Deno.exit(0);
-    }, 1000);
-  }
+//     // run pull_build_restart.sh script
+//     // detach the process so it continues to run when the server is stopped
+//     // use a timeout to ensure the server has time to respond before exiting
+//     setTimeout(() => {
+//       console.log("Rebuilding code...");
+//       const cmd = new Deno.Command("/usr/bin/bash", {
+//         args: [""],
+//         detach: true,
+//       });
+//       const child = cmd.spawn();
+//       child.output();
+//       child.unref();
+//       console.log("Exiting the current server...");
+//       Deno.exit(0);
+//     }, 1000);
+//   }
 
-  ctx.response.status = 200;
-  ctx.response.body = { message: "Webhook received and verified" };
-  return;
-});
+//   ctx.response.status = 200;
+//   ctx.response.body = { message: "Webhook received and verified" };
+//   return;
+// });
 
-app.use(webhookRouter.routes());
-app.use(webhookRouter.allowedMethods());
+// app.use(webhookRouter.routes());
+// app.use(webhookRouter.allowedMethods());
 
 
 app.use(async (ctx) => {
