@@ -5,8 +5,8 @@
   },
   "version": "1.0.0",
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-env --env-file=.env --env-file=.env.local --watch server.js",
-    "start": "deno run --allow-net --allow-read --allow-env --env-file=.env --env-file=.env.local server.js"
+    "dev": "deno run --allow-net --allow-read --allow-run --allow-env --env-file=.env --env-file=.env.local --watch server.js",
+    "start": "deno run --allow-net --allow-read --allow-run --allow-env --env-file=.env --env-file=.env.local server.js"
   },
   "imports": {
     "@oak/oak": "jsr:@oak/oak@^17.1.5",
