@@ -80,14 +80,17 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
 
     // run pull_build_restart.sh script
     // detach the process so it continues to run when the server is stopped
-    const cmd = new Deno.Command("bash", {
-      args: ["./pull_build_restart.sh"],
-      detach: true,
-    });
-    const child = cmd.spawn();
-    child.output();
-    child.unref();
-    Deno.exit(0);
+    // use a timeout to ensure the server has time to respond before exiting
+    setTimeout(() => {
+      const cmd = new Deno.Command("bash", {
+        args: ["./pull_build_restart.sh"],
+        detach: true,
+      });
+      const child = cmd.spawn();
+      child.output();
+      child.unref();
+      Deno.exit(0);
+    }, 1000);
   }
 
   ctx.response.status = 200;
