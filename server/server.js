@@ -3,6 +3,8 @@ import { oakCors } from "jsr:@tajpouria/cors";
 import { Buffer } from "node:buffer";
 import crypto from "node:crypto";
 import axios from "axios";
+import { detach } from "https://jsr.io/@std/encoding/1.0.10/_common_detach.ts";
+import { cwd } from "node:process";
 
 const router = new Router();
 
@@ -46,6 +48,7 @@ app.use(router.allowedMethods());
 
 const WEBHOOK_SECRET = Deno.env.get("WEBHOOK_SECRET");
 const WEBHOOK_REF = Deno.env.get("WEBHOOK_REF");
+const WEBHOOK_REPO_URL = Deno.env.get("WEBHOOK_REPO_URL");
 
 const webhookRouter = new Router();
 
@@ -72,10 +75,15 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
   console.log("Received valid webhook request:", body);
 
   // check if code was pushed to main branch
-  if (rawBody.action === "push" && rawBody.ref === WEBHOOK_REF) {
-    console.log("Content was pushed to main branch, triggering automatic download...");
+  if (rawBody.action === "push" && rawBody.ref === WEBHOOK_REF && rawBody.repository?.url === WEBHOOK_REPO_URL) {
+    console.log("Code pushed to main branch, updating content...");
 
-    // download the latest content from the repository
+    // run pull_build_restart.sh script
+    // detach the process so it continues to run when the server is stopped
+    new Deno.Command("bash", {
+      args: ["./pull_build_restart.sh"],
+      detach: true,
+    }).spawn();
   }
 
   ctx.response.status = 200;
