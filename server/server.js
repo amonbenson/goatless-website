@@ -57,8 +57,8 @@ app.use(async (ctx) => {
 });
 
 await app.listen({
-  port: Deno.env.get("PORT") || 80,
-  secure,
+  port: Deno.env.get("PORT") || 443,
+  secure: true,
   cert: Deno.readTextFileSync(Deno.env.get("SSL_CERT")),
   key: Deno.readTextFileSync(Deno.env.get("SSL_KEY")),
 });
