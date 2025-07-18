@@ -58,6 +58,11 @@ webhookRouter.post("/internal/webhook", async (ctx) => {
   }
 
   // receive the request body and verify the signature
+  if (!ctx.request.hasBody) {
+    ctx.response.status = 400;
+    ctx.response.body = { error: "Missing request body" };
+    return;
+  }
   const body = await ctx.request.body().value;
   const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
   hmac.update(JSON.stringify(body));
