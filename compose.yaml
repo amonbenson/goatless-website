@@ -3,22 +3,23 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        - PUBLIC_SERVER_URL=${PUBLIC_SERVER_URL:-http://localhost:8080}
     volumes:
       - frontend_dist:/app/dist
+    environment:
+      - NODE_ENV=production
+      - VITE_PUBLIC_SERVER=${PUBLIC_SERVER_URL}
 
   backend:
     restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile
-      args:
-        - PUBLIC_SERVER_URL=${PUBLIC_SERVER_URL:-http://localhost:8080}
     ports:
       - "5000:5000" # host:container
     environment:
       - PORT=5000
+      - NODE_ENV=production
+      - PUBLIC_SERVER=${PUBLIC_SERVER_URL}
 
   nginx:
     restart: always

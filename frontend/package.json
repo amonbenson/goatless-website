@@ -2,7 +2,7 @@
   "name": "goatless-website-frontend",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo \"Building frontend ... public server is ${PUBLIC_SERVER}\" && mkdir -p dist && echo \"The frontend is working!\" > dist/index.html"
+    "build": "echo \"Building frontend ... public server is ${VITE_PUBLIC_SERVER}\" && mkdir -p dist && echo \"The frontend is working!\" > dist/index.html"
   },
   "author": "Amon Benson",
   "license": "ISC"
