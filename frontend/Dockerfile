@@ -1,5 +1,8 @@
 FROM node:slim AS builder
 
+ARG NODE_ENV=production
+ARG PUBLIC_SERVER=http://localhost:8080
+
 WORKDIR /app
 
 # install dependencies
