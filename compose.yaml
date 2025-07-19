@@ -30,7 +30,9 @@ services:
     ports:
       - "7000:7000" # host:container
     volumes:
-      - ${WEBHOOK_PIPE}:/app/webhook.pipe
+      # - ${WEBHOOK_PIPE}:/app/webhook.pipe
+      - .:/repository # mount whole repository to fetch changes
+      - ~/.ssh:/root/.ssh:ro # mount ssh key for git pull
     environment:
       - PORT=7000
       - NODE_ENV=production

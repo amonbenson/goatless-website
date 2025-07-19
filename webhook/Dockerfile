@@ -2,6 +2,13 @@ FROM node:slim
 
 WORKDIR /app
 
+# install required packages
+RUN apt-get update
+RUN apt-get install -y git
+
+# resolve warnings with the mounted git repo
+RUN git config --global --add safe.directory /repository
+
 # install dependencies
 COPY package*.json ./
 RUN npm install

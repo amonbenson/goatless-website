@@ -1,0 +1,15 @@
+[Unit]
+Description=Auto-deploy Goatless website
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=amon
+ExecStart=/usr/bin/env bash ./webhook/autodeploy.sh
+WorkingDirectory=/home/amon/goatless-website
+
+[Install]
+WantedBy=multi-user.target
