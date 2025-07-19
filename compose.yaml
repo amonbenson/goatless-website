@@ -21,6 +21,19 @@ services:
       - NODE_ENV=production
       - PUBLIC_SERVER=${PUBLIC_SERVER_URL}
 
+  webhook:
+    restart: always
+    build:
+      context: ./webhook
+      dockerfile: Dockerfile
+    ports:
+      - "7000:7000" # host:container
+    environment:
+      - PORT=7000
+      - NODE_ENV=production
+      - PUBLIC_SERVER=${PUBLIC_SERVER_URL}
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET}
+
   nginx:
     restart: always
     image: nginx:stable-alpine-slim
@@ -32,6 +45,7 @@ services:
     depends_on:
       - frontend
       - backend
+      - webhook
 
 volumes:
   frontend_dist:

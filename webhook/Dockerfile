@@ -16,6 +16,7 @@ COPY . .
 ENV PORT=5000
 ENV NODE_ENV=production
 ENV PUBLIC_SERVER=${PUBLIC_SERVER}
+ENV WEBHOOK_SECRET=${WEBHOOK_SECRET}
 CMD ["npm", "start"]
 
 HEALTHCHECK CMD curl -s --fail http://localhost:$PORT/ | grep -q "pong" || exit 1

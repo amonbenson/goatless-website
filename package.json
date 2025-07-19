@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "workspaces": [
     "client",
-    "server"
+    "server",
+    "webhook"
   ],
   "author": "Amon Benson",
   "license": "ISC"
