@@ -29,11 +29,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "7000:7000" # host:container
+    volumes:
+      - ${WEBHOOK_PIPE}:/app/webhook.pipe
     environment:
       - PORT=7000
       - NODE_ENV=production
       - PUBLIC_SERVER=${PUBLIC_SERVER_URL}
       - WEBHOOK_SECRET=${WEBHOOK_SECRET}
+      - WEBHOOK_PIPE=/app/webhook.pipe
 
   nginx:
     restart: always
