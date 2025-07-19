@@ -2,8 +2,15 @@ import express from "express";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("The backend is working!");
+app.get("/ping", (req, res) => {
+  res.send("pong");
+});
+
+app.get("/events", (req, res) => {
+  res.json([
+    { id: 1, name: "Event 1", date: "2023-10-01" },
+    { id: 2, name: "Event 2", date: "2023-10-02" },
+  ]);
 });
 
 const PORT = process.env.PORT || 5000;
