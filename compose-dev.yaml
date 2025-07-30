@@ -1,0 +1,26 @@
+services:
+  client:
+    restart: always
+    build:
+      context: ./client
+      args:
+        VITE_BASE_URL: "http://localhost:8080/"
+        VITE_API_BASE_URL: "http://localhost:5000" # no trailing "/"
+        VITE_LEGAL_ADDRESS: "Human Name<br>Humanstr. 42<br>12345 Human City<br>Germany"
+        VITE_LEGAL_PHONE: "+49 123 4567890"
+        VITE_LEGAL_EMAIL: "human.name@example.com"
+        VITE_FOOTER_GITHUB_LINK: "https://github.com/amonbenson/goatless-website/"
+        VITE_KNOWN_COUNTRIES: "germany,deutschland"
+    ports:
+      - "8080:80"
+
+  server:
+    restart: always
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      CORS_ORIGIN: "*"
+      BIT_API_KEY: "${BIT_API_KEY}"
+      BIT_ARTIST_ID: "${BIT_ARTIST_ID}"
