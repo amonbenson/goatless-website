@@ -13,7 +13,7 @@ onMounted(() => {
 });
 </script>
 
-![Photo of Goatless' lead singer Good Trip and bassist Lukas](/images/hero.jpg)
+<!-- ![Photo of Goatless' lead singer Good Trip and bassist Lukas](/images/hero.jpg) -->
 
 <UiVSpace />
 
