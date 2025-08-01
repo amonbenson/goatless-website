@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ignore-pattern 'dist/*' --ignore-pattern 'node_modules/*'",
     "lint:fix": "eslint .  --ignore-pattern 'dist/*' --ignore-pattern 'node_modules/*' --fix",
-    "server-dev": "vite build && deno run --allow-read --allow-net --watch server.js"
+    "docker:preview": "docker compose -f compose-dev.yaml up --build"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.0",
