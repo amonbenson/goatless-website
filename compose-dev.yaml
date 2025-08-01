@@ -1,9 +1,17 @@
 services:
-  client:
-    restart: always
+  website:
     build:
+      context: .
       args:
         VITE_BASE_URL: "http://localhost:8080/"
-        VITE_API_BASE_URL: "http://goatless-api.goatlessband.com" # note: no trailing "/"
+        VITE_API_BASE_URL: "http://localhost:5000" # note: no trailing "/"
     ports:
       - "8080:80"
+  api:
+    build: ../goatless-api
+    environment:
+      API_NODE_ENV: "production"
+      API_PORT: 80
+      API_CORS_ORIGIN: "*" # do not use in production, this makes the API running at localhost:5000 accessible to the website at :8080
+    ports:
+      - "5000:80"

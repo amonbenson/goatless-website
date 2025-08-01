@@ -2,6 +2,7 @@
   "name": "goatless-website",
   "private": true,
   "version": "1.0.0",
+  "author": "Amon Benson",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ignore-pattern 'dist/*' --ignore-pattern 'node_modules/*'",
     "lint:fix": "eslint .  --ignore-pattern 'dist/*' --ignore-pattern 'node_modules/*' --fix",
-    "docker:preview": "docker compose -f compose-dev.yaml up --build"
+    "docker:preview": "docker compose -f compose-dev.yaml build --no-cache && docker compose -f compose-dev.yaml up"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.0",
