@@ -1,21 +1,82 @@
 <script setup>
+import { onMounted } from "vue";
+import { gsap } from "gsap";
+
 import CrosswordLogo from "@/components/CrosswordLogo.vue";
 import ShowsSection from "@/components/ShowsSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 import Section from "@/components/Section.vue";
+
+onMounted(() => {
+  const sourceLetters = document.querySelectorAll(".logo-letter-crossword");
+  const targetLetters = document.querySelectorAll(".logo-letter-header");
+  const tweenLetters = document.querySelectorAll(".logo-letter-tween");
+
+  // assuming that all letters have the same size
+  const sourceFontSize = parseFloat(window.getComputedStyle(sourceLetters[0], null).getPropertyValue("font-size"));
+  const targetFontSize = parseFloat(window.getComputedStyle(targetLetters[0], null).getPropertyValue("font-size"));
+
+  for (let i = 0; i < 8; i++) {
+    const sourceBounds = sourceLetters[i].getBoundingClientRect();
+    const targetBounds = targetLetters[i].getBoundingClientRect();
+    const tweenEl = tweenLetters[i];
+
+    const tween = gsap.fromTo(tweenEl, {
+      left: sourceBounds.left,
+      top: sourceBounds.top,
+      fontSize: sourceFontSize,
+    }, {
+      left: targetBounds.left,
+      top: targetBounds.top,
+      fontSize: targetFontSize,
+      duration: 5
+    });
+  }
+});
 </script>
 
 <template>
+  <header class="fixed left-0 top-0 w-screen bg-black py-4 z-40">
+    <!-- Navbar Container -->
+    <div class="fixed w-screen flex justify-center items-stretch">
+      <h1>
+        <span
+          v-for="char, i in 'GOATLESS'"
+          class="logo-letter-header"
+          :key="i"
+        >
+          {{ char }}
+        </span>
+      </h1>
+    </div>
+
+    <!-- Logo Container -->
+    <div class="fixed inset-0 flex justify-center items-center">
+      <CrosswordLogo class="fixed z-50" />
+    </div>
+
+    <!-- Tween Elements -->
+    <div
+      v-for="char, i in 'GOATLESS'"
+      class="fixed font-title leading-none logo-letter-tween"
+      :key="i"
+    >
+      {{ char }}
+    </div>
+  </header>
+
   <main class="space-y-8">
-    <!-- <div class="w-full h-screen flex justify-center items-center">
-      <CrosswordLogo class="fixed" />
-    </div> -->
+    <div class="h-screen" />
 
     <ShowsSection fill-screen />
 
     <ContactSection fill-screen />
 
-    <Section title="Go(&oslash;)dy &centerdot; Lead Singer" align-left fill-screen>
+    <Section
+      title="Go(&oslash;)dy &centerdot; Lead Singer"
+      align-left
+      fill-screen
+    >
       <p>
         Rapper or singer? You decide! He won't.
       </p>
@@ -34,7 +95,11 @@ import Section from "@/components/Section.vue";
       </p>
     </Section>
 
-    <Section title="Lukas &centerdot; Bassist" align-right fill-screen>
+    <Section
+      title="Lukas &centerdot; Bassist"
+      align-right
+      fill-screen
+    >
       <p>
         Born in 2003, Lukas has been playing guitar for 13 years and bass for over 6
         years. Lukas had his first band in elementary school with his brothers before
@@ -44,7 +109,11 @@ import Section from "@/components/Section.vue";
       </p>
     </Section>
 
-    <Section title="Amon &centerdot; Keyboarder" align-left fill-screen>
+    <Section
+      title="Amon &centerdot; Keyboarder"
+      align-left
+      fill-screen
+    >
       <p>
         Born in 2000, Amon has been playing the piano since he was 7 years old and
         started singing in 2012. He has been producing and writing his own music under
@@ -56,7 +125,11 @@ import Section from "@/components/Section.vue";
       </p>
     </Section>
 
-    <Section title="Nico &centerdot; Guitarist" align-right fill-screen>
+    <Section
+      title="Nico &centerdot; Guitarist"
+      align-right
+      fill-screen
+    >
       <p>
         Born in 2001 in Berlin, Nico has been playing the guitar for over 13 years. He
         began his musical journey with his school band, LOUNGE ACT. Alongside that, he
@@ -66,7 +139,11 @@ import Section from "@/components/Section.vue";
       </p>
     </Section>
 
-    <Section title="Björn &centerdot; Drummer" align-left fill-screen>
+    <Section
+      title="Björn &centerdot; Drummer"
+      align-left
+      fill-screen
+    >
       <p>
         Born in 1998 and a Berlin native, Björn has been playing the drums for over 15
         years, breaking countless sticks along the way. He founded his first band,
@@ -83,7 +160,10 @@ import Section from "@/components/Section.vue";
   </main>
 
   <footer>
-    <Section title="Website Owner / Responsible for Content" class="mb-8">
+    <Section
+      title="Website Owner / Responsible for Content"
+      class="mb-8"
+    >
       <p class="select-text">
         Amon Benson<br>
         Albrechtstr. 35a<br>

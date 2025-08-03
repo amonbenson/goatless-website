@@ -1,4 +1,6 @@
 <script setup>
+const LOGO_ROW = 4;
+
 const columns = [
   { letters: "    G    ", link: null },
   { letters: "  SHOWS  ", link: "/shows" },
@@ -25,11 +27,11 @@ const columns = [
         v-for="letter, j in letters"
         :key="j"
         class="flex justify-center items-center"
-        :class="j === 4 ? 'basis-2/10' : 'basis-1/10'"
+        :class="j === LOGO_ROW ? 'basis-2/10' : 'basis-1/10'"
       >
         <div
           class="font-title leading-none"
-          :class="j === 4 ? 'text-[19vmin] -mb-[35%]' : 'text-[6vmin]'"
+          :class="j === LOGO_ROW ? 'text-[19vmin] -mb-[35%] logo-letter-crossword' : 'text-[6vmin]'"
         >
           {{ letter.replace(' ', '&nbsp;') }}
         </div>
