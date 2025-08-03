@@ -24,7 +24,11 @@ const events = [
 </script>
 
 <template>
-  <Section title="Upcoming Shows">
+  <Section
+    title="Upcoming Shows"
+    section-id="shows"
+    fill-screen
+  >
     <div
       v-for="event in events"
       :key="event.id"

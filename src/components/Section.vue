@@ -13,9 +13,6 @@ defineProps({
 <template>
   <section
     class="padded-container space-y-8 mb-24"
-    :class="{
-      'min-h-[min(75vh,48rem)]': fillScreen,
-    }"
   >
     <SectionHeading
       :section-id="sectionId"
@@ -38,4 +35,9 @@ defineProps({
       <slot />
     </div>
   </section>
+
+  <div
+    v-if="fillScreen"
+    class="h-[50vh]"
+  />
 </template>
