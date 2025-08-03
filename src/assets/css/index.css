@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap") layer(base);
+@import url("https://fonts.googleapis.com/css2?family=Nokora:wght@100..900&family=Special+Elite&display=swap") layer(base);
 
 @import 'tailwindcss';
 
@@ -9,38 +9,19 @@
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  --color-dark: rgb(17 24 39);
-  --color-darker: rgb(3 7 18);
-  --color-light: rgb(249 250 251);
-  --color-muted: rgb(156 163 175);
+  --color-black: #000000;
+  --color-white: #ffffff;
 
-  --color-primary: #EE4237;
-  --color-secondary: #EE4237;
-  --color-accent: #EE4237;
+  --color-red: #ef4337;
+  --color-red-lighter: #f54c42;
 
   --opacity-muted: 50%;
+
+  --font-title: "Special Elite", sans-serif;
+  --font-body: "Nokora", sans-serif;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-@utility focusring {
+/* @utility focusring {
   @apply focus:outline-hidden focus-visible:ring-primary focus-visible:ring-4;
 }
 
@@ -50,44 +31,47 @@
 
 @utility no-spinner {
   @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+} */
+
+@utility padded-container {
+  @apply container mx-auto px-4 overflow-x-hidden;
 }
 
 @layer base {
-
-  html,
-  body,
-  * {
-    font-family: "Open Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
+  html, body {
+    @apply bg-black text-white scroll-smooth font-body text-justify select-none;
   }
 
-  body {
-    @apply bg-darker text-light w-full h-full;
+  h1, h2, h3, h4, h5 {
+    @apply truncate;
   }
 
   h1 {
-    @apply text-4xl font-bold;
+    @apply text-6xl font-title;
   }
 
   h2 {
-    @apply text-2xl font-bold;
+    @apply text-4xl font-title;
   }
 
   h3 {
-    @apply text-xl font-bold;
+    @apply text-2xl font-title;
   }
 
   h4 {
-    @apply text-lg font-bold;
+    @apply text-xl font-title;
   }
 
   h5 {
-    @apply text-base font-bold;
+    @apply text-lg font-title;
+  }
+
+  a {
+    @apply cursor-pointer;
   }
 
   a:not(.plain-link) {
-    @apply text-accent;
+    @apply text-red-lighter;
   }
 
   i {

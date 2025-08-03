@@ -1,60 +1,103 @@
 <script setup>
-import { ref } from "vue";
-import HeaderBar from "@/components/HeaderBar.vue";
-import ScrollContainer from "@/components/ScrollContainer.vue";
-import FooterBar from "@/components/FooterBar.vue";
-import MenuOverlay from "./components/MenuOverlay.vue";
-
-const menuOpen = ref(false);
-
-const headerItems = [
-  { text: "shows", to: "/shows" },
-  { text: "members", to: "/members" },
-];
-
-const footerItems = [
-  { text: "contact", to: "/contact" },
-  { text: "legal", to: "/legal" },
-];
-
-const socials = {
-  instagram: "https://www.instagram.com/goatless_official",
-  tiktok: "https://www.tiktok.com/@goatless_official",
-  youtube: "https://www.youtube.com/@goatless_official",
-};
+import CrosswordLogo from "@/components/CrosswordLogo.vue";
+import ShowsSection from "@/components/ShowsSection.vue";
+import ContactSection from "@/components/ContactSection.vue";
+import Section from "@/components/Section.vue";
 </script>
 
 <template>
-  <BackdropMedia
-    class="fixed inset-0 pointer-events-none -z-10"
-  />
+  <main class="space-y-8">
+    <!-- <div class="w-full h-screen flex justify-center items-center">
+      <CrosswordLogo class="fixed" />
+    </div> -->
 
-  <HeaderBar
-    v-model:menu-open="menuOpen"
-    :items="headerItems"
-    class="fixed left-0 top-0 w-full h-12 z-30"
-  />
+    <ShowsSection fill-screen />
 
-  <ScrollContainer
-    is="main"
-    class="w-screen h-screen"
-  >
-    <div class="w-full min-h-full pt-20 pb-16 flex items-center justify-center">
-      <RouterView class="w-full" />
-    </div>
-  </ScrollContainer>
+    <ContactSection fill-screen />
 
-  <FooterBar
-    :items="footerItems"
-    :socials="socials"
-    class="hidden sm:block fixed left-0 bottom-0 w-full h-8 z-30"
-  />
+    <Section title="Go(&oslash;)dy &centerdot; Lead Singer" align-left fill-screen>
+      <p>
+        Rapper or singer? You decide! He won't.
+      </p>
+      <p>
+        Born in 1999, Go(&oslash;)dy has been singing since he was two years old. At the
+        age of three he joined the children's choir and at the age of 8 he was on the
+        first musical stage. In 2011 he was the youngest member of the Wilmacoustix and
+        after a year's break he refounded the band again in 2015 together with Björn. He
+        also met Amon in the same year. They made music with Amon under the names Radix
+        L$D and Dup Steppas until he began writing songs and music himself in 2018. When
+        the bands merged and Goatless was founded, he also took on smaller acts and
+        instruments. He also created the goodflegel label with Amon in 2019.
+      </p>
+      <p>
+        He usually behaves very inconspicuously.
+      </p>
+    </Section>
 
-  <MenuOverlay
-    v-model:menu-open="menuOpen"
-    :header-items="headerItems"
-    :footer-items="footerItems"
-    :socials="socials"
-    class="fixed top-0 left-0 w-screen h-screen z-20"
-  />
+    <Section title="Lukas &centerdot; Bassist" align-right fill-screen>
+      <p>
+        Born in 2003, Lukas has been playing guitar for 13 years and bass for over 6
+        years. Lukas had his first band in elementary school with his brothers before
+        joining the Wilmacoustics in high school. After 7Strokes and Safecall, Lukas has
+        been a member of Goatless since the beginning. Since this year he also has the
+        new name Sexy Bass.
+      </p>
+    </Section>
+
+    <Section title="Amon &centerdot; Keyboarder" align-left fill-screen>
+      <p>
+        Born in 2000, Amon has been playing the piano since he was 7 years old and
+        started singing in 2012. He has been producing and writing his own music under
+        the name Schlegelflegel since 2015 and met Go(&oslash;)dy in the same year. They
+        appeared on stage together for the first time under their own names. After
+        collaborating in their project Radix L$D, they founded the band Dup Steppas
+        in 2017. Following several appearances with the 7strokes and the Wilmacoustics,
+        he remains one of the founding fathers of Goatless.
+      </p>
+    </Section>
+
+    <Section title="Nico &centerdot; Guitarist" align-right fill-screen>
+      <p>
+        Born in 2001 in Berlin, Nico has been playing the guitar for over 13 years. He
+        began his musical journey with his school band, LOUNGE ACT. Alongside that, he
+        joined Björn in the project 7Strokes. Since 2020, Nico has been a part of
+        Goatless, where he brings deep emotion to every string he touches &mdash; you
+        can feel that. He lets his babies cry and sing.
+      </p>
+    </Section>
+
+    <Section title="Björn &centerdot; Drummer" align-left fill-screen>
+      <p>
+        Born in 1998 and a Berlin native, Björn has been playing the drums for over 15
+        years, breaking countless sticks along the way. He founded his first band,
+        Jigsaw, in 2013 and was an integral part of his school band, Wilmacoustix. Björn
+        later teamed up with Go(&oslash;)dy and Amon for their debut collaboration, Dup
+        Steppas. Juggling multiple projects, he played in two bands simultaneously until
+        they merged to form Goatless.
+      </p>
+      <p>
+        Outside of music, Björn has a passion for boxing and traveling. Recognized as
+        one of the greatest drummers on the planet, he never misses a beat.
+      </p>
+    </Section>
+  </main>
+
+  <footer>
+    <Section title="Website Owner / Responsible for Content" class="mb-8">
+      <p class="select-text">
+        Amon Benson<br>
+        Albrechtstr. 35a<br>
+        12167 Berlin
+      </p>
+      <p>
+        Phone: <a href="tel:+491622108093">+49 162 2108093</a>
+      </p>
+      <p>
+        Email: <a href="mailto:contact@goatlessband.com">contact@goatlessband.com</a>
+      </p>
+      <p>
+        <a>No goats were harmed during the making of this website.</a>
+      </p>
+    </Section>
+  </footer>
 </template>

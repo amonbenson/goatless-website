@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import icons from "unplugin-icons/vite";
 import iconsResolver from "unplugin-icons/resolver";
 import components from "unplugin-vue-components/vite";
-import markdown from "unplugin-vue-markdown/vite";
+// import markdown from "unplugin-vue-markdown/vite";
 import vueRouter from "unplugin-vue-router/vite";
 import svgLoader from "vite-svg-loader";
 
@@ -21,16 +21,16 @@ export default defineConfig({
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    markdown({
-      markdownitOptions: {
-        html: true,
-        linkify: true,
-        typographer: true,
-      },
-      headEnabled: true,
-      wrapperComponent: "MarkdownBody",
-      wrapperDiv: false,
-    }),
+    // markdown({
+    //   markdownitOptions: {
+    //     html: true,
+    //     linkify: true,
+    //     typographer: true,
+    //   },
+    //   headEnabled: true,
+    //   wrapperComponent: "MarkdownBody",
+    //   wrapperDiv: false,
+    // }),
     components({
       extensions: ["vue", "md"],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
