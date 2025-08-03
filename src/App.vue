@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, onBeforeUnmount } from "vue";
 import { gsap } from "gsap";
 
 import CrosswordLogo from "@/components/CrosswordLogo.vue";
@@ -7,21 +7,60 @@ import ShowsSection from "@/components/ShowsSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 import Section from "@/components/Section.vue";
 
+let crosswordLogoContainer = null;
+let sourceLetters = null;
+let targetLetters = null;
+let tweenLetters = null;
+
+let scrollThreshold = 1000; // will be replaced during onMounted
+let timeline = null;
+
+function updateTimeline() {
+  // calculate scroll percentage
+  const scrollTop = window.scrollY;
+  const progress = Math.min(scrollTop / scrollThreshold);
+
+  // update timeline animation
+  timeline.progress(progress);
+
+  // update visibility of source, target, and tween elements
+  crosswordLogoContainer.style.visibility = progress < 0.1 ? "visible" : "hidden";
+  sourceLetters.forEach(el => el.style.visibility = progress <= 0.01 ? "visible" : "hidden");
+  targetLetters.forEach(el => el.style.visibility = progress >= 0.99 ? "visible" : "hidden");
+  tweenLetters.forEach(el => el.style.visibility = progress > 0.01 && progress < 0.99 ? "visible" : "hidden");
+}
+
+function handleScroll() {
+}
+
 onMounted(() => {
-  const sourceLetters = document.querySelectorAll(".logo-letter-crossword");
-  const targetLetters = document.querySelectorAll(".logo-letter-header");
-  const tweenLetters = document.querySelectorAll(".logo-letter-tween");
+  const scrollPlaceholder = document.getElementById("scroll-placeholder");
+  const navbar = document.getElementById("navbar");
+  scrollThreshold = scrollPlaceholder.getBoundingClientRect().height - navbar.getBoundingClientRect().height;
+
+  crosswordLogoContainer = document.getElementById("crossword-logo-container");
+  sourceLetters = document.querySelectorAll(".logo-letter-crossword");
+  targetLetters = document.querySelectorAll(".logo-letter-header");
+  tweenLetters = document.querySelectorAll(".logo-letter-tween");
 
   // assuming that all letters have the same size
   const sourceFontSize = parseFloat(window.getComputedStyle(sourceLetters[0], null).getPropertyValue("font-size"));
   const targetFontSize = parseFloat(window.getComputedStyle(targetLetters[0], null).getPropertyValue("font-size"));
 
+  timeline = gsap.timeline({
+    paused: true,
+    onUpdate: () => {
+      const progress = timeline.progress();
+    },
+  });
+
+  // move the tween letters
   for (let i = 0; i < 8; i++) {
     const sourceBounds = sourceLetters[i].getBoundingClientRect();
     const targetBounds = targetLetters[i].getBoundingClientRect();
-    const tweenEl = tweenLetters[i];
+    const tween = tweenLetters[i];
 
-    const tween = gsap.fromTo(tweenEl, {
+    timeline.fromTo(tween, {
       left: sourceBounds.left,
       top: sourceBounds.top,
       fontSize: sourceFontSize,
@@ -29,36 +68,58 @@ onMounted(() => {
       left: targetBounds.left,
       top: targetBounds.top,
       fontSize: targetFontSize,
-      duration: 5
-    });
+      ease: "none",
+    }, 0);
   }
+
+  // hide the crossword letters
+  timeline.fromTo(crosswordLogoContainer, {
+    opacity: 1,
+  }, {
+    opacity: 0,
+    ease: "none",
+    duration: 0.05,
+  }, 0);
+
+  // update the progress when the page is scrolled
+  window.addEventListener("scroll", updateTimeline);
+  updateTimeline();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", updateTimeline);
 });
 </script>
 
 <template>
-  <header class="fixed left-0 top-0 w-screen bg-black py-4 z-40">
+  <header class="fixed left-0 top-0 w-screen z-40">
     <!-- Navbar Container -->
-    <div class="fixed w-screen flex justify-center items-stretch">
-      <h1>
-        <span
-          v-for="char, i in 'GOATLESS'"
-          class="logo-letter-header"
-          :key="i"
+    <div id="navbar" class="fixed w-screen flex justify-center items-stretch bg-black py-4">
+      <h1 class="-mb-4">
+        <a
+          class="plain-link"
+          href="#"
         >
-          {{ char }}
-        </span>
+          <span
+            v-for="char, i in 'GOATLESS'"
+            class="logo-letter-header"
+            :key="i"
+          >
+            {{ char }}
+          </span>
+        </a>
       </h1>
     </div>
 
     <!-- Logo Container -->
-    <div class="fixed inset-0 flex justify-center items-center">
-      <CrosswordLogo class="fixed z-50" />
+    <div id="crossword-logo-container" class="fixed inset-0 flex justify-center items-center">
+      <CrosswordLogo />
     </div>
 
     <!-- Tween Elements -->
     <div
       v-for="char, i in 'GOATLESS'"
-      class="fixed font-title leading-none logo-letter-tween"
+      class="fixed font-title leading-none pointer-events-none logo-letter-tween z-50"
       :key="i"
     >
       {{ char }}
@@ -66,16 +127,21 @@ onMounted(() => {
   </header>
 
   <main class="space-y-8">
-    <div class="h-screen" />
+    <div id="scroll-placeholder" class="h-screen" />
 
-    <ShowsSection fill-screen />
+    <ShowsSection
+      section-id="shows"
+    />
 
-    <ContactSection fill-screen />
+    <ContactSection
+      section-id="contact"
+    />
 
     <Section
       title="Go(&oslash;)dy &centerdot; Lead Singer"
       align-left
       fill-screen
+      section-id="goody"
     >
       <p>
         Rapper or singer? You decide! He won't.
@@ -99,6 +165,7 @@ onMounted(() => {
       title="Lukas &centerdot; Bassist"
       align-right
       fill-screen
+      section-id="lukas"
     >
       <p>
         Born in 2003, Lukas has been playing guitar for 13 years and bass for over 6
@@ -113,6 +180,7 @@ onMounted(() => {
       title="Amon &centerdot; Keyboarder"
       align-left
       fill-screen
+      section-id="amon"
     >
       <p>
         Born in 2000, Amon has been playing the piano since he was 7 years old and
@@ -129,6 +197,7 @@ onMounted(() => {
       title="Nico &centerdot; Guitarist"
       align-right
       fill-screen
+      section-id="nico"
     >
       <p>
         Born in 2001 in Berlin, Nico has been playing the guitar for over 13 years. He
@@ -143,6 +212,7 @@ onMounted(() => {
       title="Björn &centerdot; Drummer"
       align-left
       fill-screen
+      section-id="bjoern"
     >
       <p>
         Born in 1998 and a Berlin native, Björn has been playing the drums for over 15
@@ -163,6 +233,7 @@ onMounted(() => {
     <Section
       title="Website Owner / Responsible for Content"
       class="mb-8"
+      section-id="legal"
     >
       <p class="select-text">
         Amon Benson<br>
@@ -176,7 +247,7 @@ onMounted(() => {
         Email: <a href="mailto:contact@goatlessband.com">contact@goatlessband.com</a>
       </p>
       <p>
-        <a>No goats were harmed during the making of this website.</a>
+        <a href="https://github.com/amonbenson/goatless-website" target="_blank" rel="noopener noreferrer">No goats were harmed during the making of this website.</a>
       </p>
     </Section>
   </footer>

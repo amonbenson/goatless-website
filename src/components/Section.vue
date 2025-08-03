@@ -1,6 +1,9 @@
 <script setup>
+import SectionHeading from "./SectionHeading.vue";
+
 defineProps({
   title: { type: String, required: true },
+  sectionId: { type: String, default: undefined },
   alignLeft: Boolean,
   alignRight: Boolean,
   fillScreen: Boolean,
@@ -9,12 +12,13 @@ defineProps({
 
 <template>
   <section
-    class="padded-container space-y-8"
+    class="padded-container space-y-8 mb-24"
     :class="{
       'min-h-[min(75vh,48rem)]': fillScreen,
     }"
   >
-    <h2
+    <SectionHeading
+      :section-id="sectionId"
       class="w-full"
       :class="{
         'md:w-1/2': alignLeft,
@@ -22,7 +26,7 @@ defineProps({
       }"
     >
       {{ title }}
-    </h2>
+    </SectionHeading>
 
     <div
       class="w-full space-y-8"
