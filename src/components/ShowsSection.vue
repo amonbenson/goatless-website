@@ -8,7 +8,6 @@ const events = ref(null);
 
 onMounted(async () => {
   events.value = await getEvents();
-  console.log(events.value);
 });
 </script>
 
