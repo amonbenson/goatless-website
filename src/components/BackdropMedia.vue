@@ -87,7 +87,7 @@ watch(url, (urlValue) => {
 
     <!-- Dark Overlay -->
     <div
-      class="absolute inset-0 bg-black transition-opacity duration-500"
+      class="absolute -inset-1/2 bg-black transition-opacity duration-500"
       :style="{ opacity: 1 - (opacity * (mediaType === 'none' ? 0 : 1)) }"
     />
   </div>
