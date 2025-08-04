@@ -34,7 +34,7 @@ function setupAnimation() {
   timeline.fromTo(logoContainer, {
     height: "100vh",
   }, {
-    height: "6rem",
+    height: "5rem",
     duration: 1,
     ease: "none",
   }, 0);
@@ -89,7 +89,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="fixed w-screen z-40">
+  <div class="fixed w-screen">
     <div
       id="gl-logo-container"
       class="fixed left-0 top-0 w-screen h-screen"

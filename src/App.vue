@@ -1,7 +1,4 @@
 <script setup>
-import { onMounted, onBeforeUnmount } from "vue";
-import { gsap } from "gsap";
-
 import GoatlessLogo from "@/components/GoatlessLogo.vue";
 import ShowsSection from "@/components/ShowsSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
@@ -10,7 +7,9 @@ import MemberSections from "@/components/MemberSections.vue";
 
 <template>
   <header>
-    <GoatlessLogo />
+    <GoatlessLogo class="z-50" />
+
+    <div class="fixed left-0 top-0 w-screen h-16 bg-black z-40" />
   </header>
 
   <main class="space-y-8">
