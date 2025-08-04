@@ -16,7 +16,7 @@ onMounted(async () => {
     title="Upcoming Shows"
     section-id="shows"
     backdrop-media="/videos/heroBackdrop.mp4"
-    backdrop-opacity="0.1"
+    :backdrop-opacity="0.1"
     fill-screen
   >
     <Event

@@ -69,7 +69,7 @@ watch(url, (urlValue) => {
 
     <!-- Background Image A -->
     <div
-      class="absolute inset-0 bg-center bg-cover bg-fixed transition-opacity duration-500"
+      class="absolute -inset-1/2 bg-center bg-cover bg-fixed transition-opacity duration-500"
       :class="mediaType === 'image' ? 'opacity-100' : 'opacity-0'"
       :style="{
         backgroundImage: imageUrlA ? `url(${imageUrlA})` : 'none',
@@ -78,7 +78,7 @@ watch(url, (urlValue) => {
 
     <!-- Background Image B -->
     <div
-      class="absolute inset-0 bg-center bg-cover bg-fixed transition-opacity duration-500"
+      class="absolute -inset-1/2 bg-center bg-cover bg-fixed transition-opacity duration-500"
       :class="mediaType === 'image' && !imageSelector ? 'opacity-100' : 'opacity-0'"
       :style="{
         backgroundImage: imageUrlB ? `url(${imageUrlB})` : 'none',

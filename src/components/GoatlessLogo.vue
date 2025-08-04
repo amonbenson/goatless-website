@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
       id="gl-logo-container"
       class="fixed left-0 top-0 w-screen h-screen pointer-events-none"
       data-backdrop-media=""
-      data-backdrop-opacity="0"
+      :data-backdrop-opacity="0"
     >
       <h1
         id="gl-logo"
