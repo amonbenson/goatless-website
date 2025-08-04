@@ -92,13 +92,13 @@ onBeforeUnmount(() => {
   <div class="fixed w-screen">
     <div
       id="gl-logo-container"
-      class="fixed left-0 top-0 w-screen h-screen"
+      class="fixed left-0 top-0 w-screen h-screen pointer-events-none"
       data-backdrop-media=""
       data-backdrop-opacity="0"
     >
       <h1
         id="gl-logo"
-        class="overflow-visible absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        class="overflow-visible absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
       >
         <a
           class="text-white"

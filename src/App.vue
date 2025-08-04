@@ -6,6 +6,15 @@ import ShowsSection from "./components/ShowsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
 import MemberSections from "./components/MemberSections.vue";
 import BackdropMedia from "./components/BackdropMedia.vue";
+import InstagramIcon from "@/assets/svg/instagram_line.svg";
+import TiktokIcon from "@/assets/svg/tiktok_line.svg";
+import YoutubeIcon from "@/assets/svg/youtube_line.svg";
+
+const SOCIALS = [
+  { icon: InstagramIcon, link: "https://www.instagram.com/goatless_official" },
+  { icon: TiktokIcon, link: "https://www.tiktok.com/@goatless_official" },
+  { icon: YoutubeIcon, link: "https://www.youtube.com/@goatless_official" },
+];
 
 let backdropTriggers = [];
 
@@ -66,9 +75,25 @@ onUnmounted(() => {
   />
 
   <header>
-    <GoatlessLogo class="z-50" />
+    <div class="fixed left-0 top-0 w-screen h-16 bg-black drop-shadow-black/100 drop-shadow-xl z-40">
+      <div class="padded-container size-full flex justify-end items-center gap-2">
+        <a
+          v-for="social in SOCIALS"
+          :key="social.link"
+          :href="social.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="z-50 text-white"
+        >
+          <component
+            :is="social.icon"
+            class="size-8"
+          />
+        </a>
+      </div>
+    </div>
 
-    <div class="fixed left-0 top-0 w-screen h-16 bg-black drop-shadow-black/100 drop-shadow-xl z-40" />
+    <GoatlessLogo class="z-50" />
   </header>
 
   <main class="space-y-8">
