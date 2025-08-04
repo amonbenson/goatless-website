@@ -9,6 +9,7 @@ import BackdropMedia from "./components/BackdropMedia.vue";
 import InstagramIcon from "@/assets/svg/instagram_line.svg";
 import TiktokIcon from "@/assets/svg/tiktok_line.svg";
 import YoutubeIcon from "@/assets/svg/youtube_line.svg";
+import GoatlessLogoSvg from "@/assets/svg/goatless_logo.svg";
 
 const SOCIALS = [
   { icon: InstagramIcon, link: "https://www.instagram.com/goatless_official" },
@@ -93,8 +94,10 @@ onUnmounted(() => {
     <MemberSections />
 
     <Section
-      title="Impressum"
+      title="Website Owner"
       section-id="legal"
+      backdrop-media=""
+      :backdrop-opacity="0"
     >
       <p class="select-text">
         Amon Benson<br>
@@ -105,9 +108,13 @@ onUnmounted(() => {
         Phone: <a href="tel:+491622108093">+49 162 2108093</a>
       </p>
       <p>
-        Email: <a href="mailto:contact@goatlessband.com">contact@goatlessband.com</a>
+        Email: <a href="mailto:goatless.official@gmail.com">goatless.official@gmail.com</a>
       </p>
-      <p>
+
+      <p class="text-center mt-32">
+        <GoatlessLogoSvg class="inline-block size-64" />
+      </p>
+      <p class="text-center mb-64">
         <a
           href="https://github.com/amonbenson/goatless-website"
           target="_blank"

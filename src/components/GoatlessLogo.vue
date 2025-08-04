@@ -18,6 +18,7 @@ const columns = [
   { letter: "E", top: "MEMB", bottom: "RS", link: "#goody" },
   { letter: "S" },
   { letter: "S" },
+  // { letter: "S", top: "IMPRE", bottom: "SUM", link: "#legal" },
 ];
 
 function setupAnimation() {
