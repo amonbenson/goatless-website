@@ -1,0 +1,141 @@
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { gsap } from "gsap";
+
+const OPACITY_THRESHOLD = 0.75;
+const SCROLL_HEIGHT_FACTOR = 0.95;
+
+let timeline = null;
+const showColumns = ref(true);
+
+const columns = [
+  { letter: "G" },
+  { letter: "O", top: "SH", bottom: "WS", link: "#shows" },
+  { letter: "A" },
+  { letter: "T", top: "CON", bottom: "ACT", link: "#contact" },
+  { letter: "L" },
+  { letter: "E", top: "MEMB", bottom: "RS", link: "#goody" },
+  { letter: "S" },
+  { letter: "S" },
+];
+
+function setupAnimation() {
+  // kill old timeline
+  if (timeline) {
+    timeline.kill();
+  }
+
+  const logoContainer = document.getElementById("gl-logo-container");
+  const logo = document.getElementById("gl-logo");
+  const linkLetters = document.querySelectorAll(".gl-logo-link-letter");
+
+  // animate all elements
+  timeline = gsap.timeline({ paused: true });
+  timeline.fromTo(logoContainer, {
+    height: "100vh",
+  }, {
+    height: "6rem",
+    duration: 1,
+    ease: "none",
+  }, 0);
+  timeline.fromTo(logo, {
+    scale: Math.min(window.innerWidth / logo.clientWidth * 0.75, window.innerHeight / logo.clientHeight * 0.2),
+    opacity: 1,
+  }, {
+    scale: 1,
+    opacity: 1,
+    duration: 1,
+    ease: "none",
+  }, 0);
+  linkLetters.forEach(el => timeline.fromTo(el, {
+    opacity: 1,
+  }, {
+    opacity: 0,
+    duration: OPACITY_THRESHOLD,
+    ease: "none",
+  }, 0));
+
+  // apply initial scroll value
+  handleScroll();
+}
+
+function handleScroll() {
+  // calculate progress based on scroll position
+  const progress = Math.min(1, window.scrollY / (window.innerHeight * SCROLL_HEIGHT_FACTOR));
+
+  // set timeline progress
+  timeline.progress(progress);
+
+  // toggle show columns variable
+  showColumns.value = progress < OPACITY_THRESHOLD;
+}
+
+function handleResize() {
+  // recreate the animation when the window size changes
+  setupAnimation();
+}
+
+onMounted(() => {
+  document.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", handleResize);
+  setupAnimation();
+});
+
+onBeforeUnmount(() => {
+  timeline.kill();
+  document.removeEventListener("scroll", handleScroll);
+  window.removeEventListener("resize", handleResize);
+});
+</script>
+
+<template>
+  <div class="fixed w-screen z-40">
+    <div
+      id="gl-logo-container"
+      class="fixed left-0 top-0 w-screen h-screen"
+    >
+      <h1
+        id="gl-logo"
+        class="overflow-visible absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+      >
+        <a
+          class="text-white"
+          :href="showColums ? undefined: '#'"
+        >
+          <component
+            :is="column.link ? 'a' : 'span'"
+            v-for="column, x in columns"
+            :key="x"
+            :href="column.link && showColumns ? column.link : undefined"
+            class="gl-logo-letter inline-block relative text-white transition-colors"
+            :class="{
+              'hover:text-red-lighter': column.link && showColumns,
+            }"
+          >
+            {{ column.letter }}
+            <span
+              v-for="topLetter, y in column.top?.split('').reverse().join('') ?? []"
+              :key="y"
+              class="gl-logo-link-letter text-2xl absolute left-1/2 top-1/2"
+              :style="{
+                transform: `translate(-50%, calc(-175% - 75% * ${y}))`,
+              }"
+            >
+              {{ topLetter }}
+            </span>
+            <span
+              v-for="bottomLetter, y in column.bottom ?? []"
+              :key="y"
+              class="gl-logo-link-letter text-2xl absolute left-1/2 top-1/2"
+              :style="{
+                transform: `translate(-50%, calc(45% + 75% * ${y}))`,
+              }"
+            >
+              {{ bottomLetter }}
+            </span>
+          </component>
+        </a>
+      </h1>
+    </div>
+  </div>
+</template>
