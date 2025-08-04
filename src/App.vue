@@ -75,23 +75,7 @@ onUnmounted(() => {
   />
 
   <header>
-    <div class="fixed left-0 top-0 w-screen h-16 bg-black drop-shadow-black/100 drop-shadow-xl z-40">
-      <div class="padded-container size-full flex justify-end items-center gap-2">
-        <a
-          v-for="social in SOCIALS"
-          :key="social.link"
-          :href="social.link"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="z-50 text-white"
-        >
-          <component
-            :is="social.icon"
-            class="size-8"
-          />
-        </a>
-      </div>
-    </div>
+    <div class="fixed left-0 top-0 w-screen h-16 bg-black drop-shadow-black/100 drop-shadow-xl z-40" />
 
     <GoatlessLogo class="z-50" />
   </header>
@@ -107,9 +91,7 @@ onUnmounted(() => {
     <ContactSection />
 
     <MemberSections />
-  </main>
 
-  <footer>
     <Section
       title="Impressum"
       section-id="legal"
@@ -133,5 +115,23 @@ onUnmounted(() => {
         >No goats were harmed during the making of this website.</a>
       </p>
     </Section>
+  </main>
+
+  <footer>
+    <div class="fixed left-1/2 -translate-x-1/2 bottom-2 flex justify-end items-center gap-2 p-2 drop-shadow-black/100 drop-shadow-xl z-40">
+      <a
+        v-for="social in SOCIALS"
+        :key="social.link"
+        :href="social.link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white z-50"
+      >
+        <component
+          :is="social.icon"
+          class="size-6"
+        />
+      </a>
+    </div>
   </footer>
 </template>
