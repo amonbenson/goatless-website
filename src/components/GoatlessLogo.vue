@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
       >
         <a
           class="text-white"
-          :href="showColums ? undefined: '#'"
+          :href="showColumns ? undefined: '#'"
         >
           <component
             :is="column.link ? 'a' : 'span'"
