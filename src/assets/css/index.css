@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nokora:wght@100..900&family=Special+Elite&display=swap") layer(base);
-
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -1,3 +1,6 @@
 Dockerfile
 compose.yaml
 compose-dev.yaml
+
+.env
+.env.example
