@@ -39,7 +39,7 @@ function setupAnimation() {
     ease: "none",
   }, 0);
   timeline.fromTo(logo, {
-    scale: Math.min(window.innerWidth / logo.clientWidth * 0.75, window.innerHeight / logo.clientHeight * 0.2),
+    scale: Math.min(window.innerWidth / logo.clientWidth * 0.8, window.innerHeight / logo.clientHeight * 0.2),
     opacity: 1,
   }, {
     scale: 1,
@@ -116,7 +116,7 @@ onBeforeUnmount(() => {
             <span
               v-for="topLetter, y in column.top?.split('').reverse().join('') ?? []"
               :key="y"
-              class="gl-logo-link-letter text-2xl absolute left-1/2 top-1/2"
+              class="gl-logo-link-letter text-[50%] absolute left-1/2 top-1/2"
               :style="{
                 transform: `translate(-50%, calc(-175% - 75% * ${y}))`,
               }"
@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
             <span
               v-for="bottomLetter, y in column.bottom ?? []"
               :key="y"
-              class="gl-logo-link-letter text-2xl absolute left-1/2 top-1/2"
+              class="gl-logo-link-letter text-[50%] absolute left-1/2 top-1/2"
               :style="{
                 transform: `translate(-50%, calc(45% + 75% * ${y}))`,
               }"

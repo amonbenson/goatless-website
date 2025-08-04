@@ -27,7 +27,7 @@ import MemberSections from "@/components/MemberSections.vue";
 
   <footer>
     <Section
-      title="Website Owner / Responsible for Content"
+      title="Impressum"
       section-id="legal"
     >
       <p class="select-text">
