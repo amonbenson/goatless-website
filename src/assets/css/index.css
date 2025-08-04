@@ -35,6 +35,10 @@
   @apply container mx-auto px-4;
 }
 
+@utility bg-blob {
+  @apply before:content-[''] before:absolute before:left-0 before:top-0 before:size-full before:bg-black before:blur-lg;
+}
+
 @layer base {
   html, body {
     @apply text-white scroll-smooth font-body text-justify select-none;

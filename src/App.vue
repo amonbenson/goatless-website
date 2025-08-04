@@ -76,8 +76,6 @@ onUnmounted(() => {
   />
 
   <header>
-    <div class="fixed left-0 top-0 w-screen h-16 bg-black drop-shadow-black/100 drop-shadow-xl z-40" />
-
     <GoatlessLogo class="z-50" />
   </header>
 
@@ -125,7 +123,7 @@ onUnmounted(() => {
   </main>
 
   <footer>
-    <div class="fixed left-1/2 -translate-x-1/2 bottom-2 flex justify-end items-center gap-2 p-2 drop-shadow-black/100 drop-shadow-xl z-40">
+    <div class="fixed left-1/2 -translate-x-1/2 bottom-2 flex justify-end items-center gap-2 p-2 z-40 bg-blob">
       <a
         v-for="social in SOCIALS"
         :key="social.link"
