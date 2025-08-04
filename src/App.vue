@@ -123,7 +123,7 @@ onUnmounted(() => {
   </main>
 
   <footer>
-    <div class="fixed left-1/2 -translate-x-1/2 bottom-2 flex justify-end items-center gap-2 p-2 z-40 bg-blob">
+    <div class="fixed left-1/2 -translate-x-1/2 bottom-4 flex justify-end items-center gap-2 z-40 bg-blob">
       <a
         v-for="social in SOCIALS"
         :key="social.link"
