@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import { gsap } from "gsap";
+import LogoSvg from "@/assets/svg/goatless_logo.svg";
 
 const OPACITY_THRESHOLD = 0.75;
 const SCROLL_HEIGHT_FACTOR = 0.95;
@@ -114,13 +115,19 @@ onBeforeUnmount(() => {
               'hover:text-red-lighter': column.link && showColumns,
             }"
           >
-            {{ column.letter }}
+            <LogoSvg
+              v-if="column.letter === 'O'"
+              class="inline-block w-[0.95em] -translate-y-[0.2em] mx-[-0.1em]"
+            />
+            <template v-else>
+              {{ column.letter }}
+            </template>
             <span
               v-for="topLetter, y in column.top?.split('').reverse().join('') ?? []"
               :key="y"
               class="gl-logo-link-letter text-[40%] absolute left-1/2 top-1/2"
               :style="{
-                transform: `translate(-50%, calc(-200% - 80% * ${y}))`,
+                transform: `translate(-50%, calc(-205% - 80% * ${y}))`,
               }"
             >
               {{ topLetter }}
@@ -130,7 +137,7 @@ onBeforeUnmount(() => {
               :key="y"
               class="gl-logo-link-letter text-[40%] absolute left-1/2 top-1/2"
               :style="{
-                transform: `translate(-50%, calc(60% + 80% * ${y}))`,
+                transform: `translate(-50%, calc(65% + 80% * ${y}))`,
               }"
             >
               {{ bottomLetter }}
