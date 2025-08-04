@@ -1,13 +1,17 @@
 <script setup>
 import Section from "./Section.vue";
+
+const BACKDROP_OPACITY = 0.3;
 </script>
 
 <template>
   <Section
     title="Go(&oslash;)dy &centerdot; Lead Singer"
-    align-left
+    align-right
     fill-screen
     section-id="goody"
+    backdrop-media="/images/members/goody.jpg"
+    :backdrop-opacity="BACKDROP_OPACITY"
   >
     <p>
       Rapper or singer? You decide! He won't.
@@ -29,9 +33,11 @@ import Section from "./Section.vue";
 
   <Section
     title="Lukas &centerdot; Bassist"
-    align-right
+    align-left
     fill-screen
     section-id="lukas"
+    backdrop-media="/images/members/lukas.jpg"
+    :backdrop-opacity="BACKDROP_OPACITY"
   >
     <p>
       Born in 2003, Lukas has been playing guitar for 13 years and bass for over 6
@@ -44,9 +50,11 @@ import Section from "./Section.vue";
 
   <Section
     title="Amon &centerdot; Keyboarder"
-    align-left
+    align-right
     fill-screen
     section-id="amon"
+    backdrop-media="/images/members/amon.jpg"
+    :backdrop-opacity="BACKDROP_OPACITY"
   >
     <p>
       Born in 2000, Amon has been playing the piano since he was 7 years old and
@@ -61,9 +69,11 @@ import Section from "./Section.vue";
 
   <Section
     title="Nico &centerdot; Guitarist"
-    align-right
+    align-left
     fill-screen
     section-id="nico"
+    backdrop-media="/images/members/nico.jpg"
+    :backdrop-opacity="BACKDROP_OPACITY"
   >
     <p>
       Born in 2001 in Berlin, Nico has been playing the guitar for over 13 years. He
@@ -76,9 +86,11 @@ import Section from "./Section.vue";
 
   <Section
     title="Björn &centerdot; Drummer"
-    align-left
+    align-right
     fill-screen
     section-id="bjoern"
+    backdrop-media="/images/members/bjoern.jpg"
+    :backdrop-opacity="BACKDROP_OPACITY"
   >
     <p>
       Born in 1998 and a Berlin native, Björn has been playing the drums for over 15

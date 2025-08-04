@@ -93,6 +93,8 @@ onBeforeUnmount(() => {
     <div
       id="gl-logo-container"
       class="fixed left-0 top-0 w-screen h-screen"
+      data-backdrop-media=""
+      data-backdrop-opacity="0"
     >
       <h1
         id="gl-logo"
@@ -116,9 +118,9 @@ onBeforeUnmount(() => {
             <span
               v-for="topLetter, y in column.top?.split('').reverse().join('') ?? []"
               :key="y"
-              class="gl-logo-link-letter text-[50%] absolute left-1/2 top-1/2"
+              class="gl-logo-link-letter text-[40%] absolute left-1/2 top-1/2"
               :style="{
-                transform: `translate(-50%, calc(-175% - 75% * ${y}))`,
+                transform: `translate(-50%, calc(-200% - 80% * ${y}))`,
               }"
             >
               {{ topLetter }}
@@ -126,9 +128,9 @@ onBeforeUnmount(() => {
             <span
               v-for="bottomLetter, y in column.bottom ?? []"
               :key="y"
-              class="gl-logo-link-letter text-[50%] absolute left-1/2 top-1/2"
+              class="gl-logo-link-letter text-[40%] absolute left-1/2 top-1/2"
               :style="{
-                transform: `translate(-50%, calc(45% + 75% * ${y}))`,
+                transform: `translate(-50%, calc(60% + 80% * ${y}))`,
               }"
             >
               {{ bottomLetter }}
