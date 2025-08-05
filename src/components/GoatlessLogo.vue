@@ -15,9 +15,10 @@ const columns = [
   { letter: "A" },
   { letter: "T", top: "CON", bottom: "ACT", link: "#contact" },
   { letter: "L" },
-  { letter: "E", top: "MEMB", bottom: "RS", link: "#goody" },
+  { letter: "E", top: "LIN", bottom: "UP", link: "#goody" },
   { letter: "S" },
   { letter: "S" },
+  // { letter: "S", top: "MU", bottom: "IC" },
   // { letter: "S", top: "IMPRE", bottom: "SUM", link: "#legal" },
 ];
 

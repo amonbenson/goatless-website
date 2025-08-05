@@ -92,11 +92,12 @@ onUnmounted(() => {
     <MemberSections />
 
     <Section
-      title="Website Owner"
+      title="Impressum"
       section-id="legal"
       backdrop-media=""
       :backdrop-opacity="0"
     >
+      <h3>Website Owner / Responsible For Content:</h3>
       <p class="select-text">
         Amon Benson<br>
         Albrechtstr. 35a<br>
