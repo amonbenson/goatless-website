@@ -1,12 +1,13 @@
 <script setup>
-import { ref, watch } from "vue";
-import { useBackdropStore } from "@/store/backdrop";
-import { storeToRefs } from "pinia";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
-const backdropStore = useBackdropStore();
-const { url, opacity, origin } = storeToRefs(backdropStore);
+const triggerElements = ref([]);
+const currentTriggerElement = ref(null);
+
+const mediaType = ref("none"); // "none", "image", or "video"
 
 // store two image urls and toggle between them to allow for smooth transitions
+const opacity = ref(0.1);
 const videoUrl = ref(null);
 const imageUrlA = ref(null);
 const imageUrlB = ref(null);
@@ -14,48 +15,92 @@ const originA = ref("center");
 const originB = ref("center");
 const imageSelector = ref(false);
 
-const mediaType = ref("none"); // "none", "image", or "video"
+function getViewElement(nodeList) {
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-// reset backdrop on route change
-// const router = useRouter();
-// router.beforeEach(() => {
-//   backdropStore.$reset();
-// });
+  let maxVisibleArea = 0;
+  let mostVisibleEl = null;
 
-// handle url change
-watch(url, (urlValue) => {
-  if (!urlValue) {
+  nodeList.forEach(el => {
+    const rect = el.getBoundingClientRect();
+
+    // Skip if completely out of view
+    if (rect.bottom <= 0 || rect.top >= viewportHeight) return;
+
+    const visibleTop = Math.max(rect.top, 0);
+    const visibleBottom = Math.min(rect.bottom, viewportHeight);
+    const visibleHeight = visibleBottom - visibleTop;
+    const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+
+    const visibleArea = visibleHeight * visibleWidth;
+
+    if (visibleArea > maxVisibleArea) {
+      maxVisibleArea = visibleArea;
+      mostVisibleEl = el;
+    }
+  });
+
+  return mostVisibleEl;
+}
+
+function handleScroll() {
+  // set the "nearest" element as the new trigger
+  const el = getViewElement(triggerElements.value);
+  if (currentTriggerElement.value === el) {
+    return;
+  }
+
+  currentTriggerElement.value = el;
+
+  // get the backdrop media attributes
+  const media = el.dataset.backdropMedia;
+  const origin = el.dataset.backdropOrigin ?? "center";
+  opacity.value = Number(el.dataset.backdropOpacity ?? 1.0);
+
+  // update the backdrop media
+  if (!media) {
     mediaType.value = "none";
     return;
   }
 
   // check extension to determine if media is a video or image
-  const extension = urlValue.split(".").pop();
+  const extension = media.split(".").pop();
   if (extension === "mp4") {
     mediaType.value = "video";
 
     // set video url
-    videoUrl.value = urlValue;
+    videoUrl.value = media;
   } else {
     mediaType.value = "image";
 
     // toggle between image A and B
     if (imageSelector.value) {
-      imageUrlB.value = urlValue;
-      originA.value = origin.value;
+      imageUrlB.value = media;
+      originB.value = origin;
     } else {
-      imageUrlA.value = urlValue;
-      originB.value = origin.value;
+      imageUrlA.value = media;
+      originA.value = origin;
     }
 
     // toggle image selector
     imageSelector.value = !imageSelector.value;
   }
+}
+
+onMounted(() => {
+  triggerElements.value = document.querySelectorAll("[data-backdrop-media]");
+
+  document.addEventListener("scroll", handleScroll);
+  handleScroll();
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("scroll", handleScroll);
 });
 </script>
 
 <template>
-  <div class="bg-background">
+  <div class="bg-black">
     <!-- Background Video -->
     <video
       v-if="videoUrl"

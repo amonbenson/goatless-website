@@ -12,7 +12,7 @@ const BACKDROP_OPACITY = 0.4;
     section-id="goody"
     data-backdrop-media="/images/members/goody.jpg"
     :data-backdrop-opacity="BACKDROP_OPACITY"
-    data-backdrop-origin="right"
+    data-backdrop-origin="left"
     backdrop-
   >
     <p>
@@ -40,7 +40,7 @@ const BACKDROP_OPACITY = 0.4;
     section-id="lukas"
     data-backdrop-media="/images/members/lukas.jpg"
     :data-backdrop-opacity="BACKDROP_OPACITY"
-    data-backdrop-origin="left"
+    data-backdrop-origin="right"
   >
     <p>
       Born in 2003, Lukas has been playing guitar for 13 years and bass for over 6
@@ -58,7 +58,7 @@ const BACKDROP_OPACITY = 0.4;
     section-id="amon"
     data-backdrop-media="/images/members/amon.jpg"
     :data-backdrop-opacity="BACKDROP_OPACITY"
-    data-backdrop-origin="right"
+    data-backdrop-origin="left"
   >
     <p>
       Born in 2000, Amon has been playing the piano since he was 7 years old and
@@ -78,7 +78,7 @@ const BACKDROP_OPACITY = 0.4;
     section-id="nico"
     data-backdrop-media="/images/members/nico.jpg"
     :data-backdrop-opacity="BACKDROP_OPACITY"
-    data-backdrop-origin="left"
+    data-backdrop-origin="right"
   >
     <p>
       Born in 2001 in Berlin, Nico has been playing the guitar for over 13 years. He
@@ -96,7 +96,7 @@ const BACKDROP_OPACITY = 0.4;
     section-id="bjoern"
     data-backdrop-media="/images/members/bjoern.jpg"
     :data-backdrop-opacity="BACKDROP_OPACITY"
-    data-backdrop-origin="right"
+    data-backdrop-origin="left"
   >
     <p>
       Born in 1998 and a Berlin native, Björn has been playing the drums for over 15
