@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
     <!-- Background Video -->
     <video
       v-if="videoUrl"
-      class="absolute inset-0 w-screen h-screen object-cover object-center motion-hidden:hidden transition-opacity duration-500"
+      class="absolute inset-0 w-screen h-screen object-cover object-center transition-opacity duration-500 motion-reduce:hidden"
       :class="mediaType === 'video' ? 'opacity-100' : 'opacity-0'"
       autoplay
       loop
