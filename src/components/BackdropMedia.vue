@@ -55,7 +55,8 @@ watch(url, (urlValue) => {
     <!-- Background Video -->
     <video
       v-if="videoUrl"
-      class="absolute inset-0 w-screen h-screen object-cover object-center"
+      class="absolute inset-0 w-screen h-screen object-cover object-center motion-hidden:hidden transition-opacity duration-500"
+      :class="mediaType === 'video' ? 'opacity-100' : 'opacity-0'"
       autoplay
       loop
       muted

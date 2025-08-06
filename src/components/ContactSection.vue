@@ -8,7 +8,7 @@ import Section from "./Section.vue";
     section-id="contact"
     fill-screen
     backdrop-media="/videos/heroBackdrop.mp4"
-    :backdrop-opacity="0.1"
+    :backdrop-opacity="0.2"
   >
     <a href="mailto:goatless.official@gmail.com">goatless.official@gmail.com</a>
   </Section>
