@@ -1,7 +1,7 @@
 <script setup>
 import Section from "./Section.vue";
 
-const BACKDROP_OPACITY = 0.3;
+const BACKDROP_OPACITY = 0.4;
 </script>
 
 <template>
@@ -10,8 +10,10 @@ const BACKDROP_OPACITY = 0.3;
     align-right
     fill-screen
     section-id="goody"
-    backdrop-media="/images/members/goody.jpg"
-    :backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-media="/images/members/goody.jpg"
+    :data-backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-origin="right"
+    backdrop-
   >
     <p>
       Rapper or singer? You decide! He won't.
@@ -36,8 +38,9 @@ const BACKDROP_OPACITY = 0.3;
     align-left
     fill-screen
     section-id="lukas"
-    backdrop-media="/images/members/lukas.jpg"
-    :backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-media="/images/members/lukas.jpg"
+    :data-backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-origin="left"
   >
     <p>
       Born in 2003, Lukas has been playing guitar for 13 years and bass for over 6
@@ -53,8 +56,9 @@ const BACKDROP_OPACITY = 0.3;
     align-right
     fill-screen
     section-id="amon"
-    backdrop-media="/images/members/amon.jpg"
-    :backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-media="/images/members/amon.jpg"
+    :data-backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-origin="right"
   >
     <p>
       Born in 2000, Amon has been playing the piano since he was 7 years old and
@@ -72,8 +76,9 @@ const BACKDROP_OPACITY = 0.3;
     align-left
     fill-screen
     section-id="nico"
-    backdrop-media="/images/members/nico.jpg"
-    :backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-media="/images/members/nico.jpg"
+    :data-backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-origin="left"
   >
     <p>
       Born in 2001 in Berlin, Nico has been playing the guitar for over 13 years. He
@@ -89,8 +94,9 @@ const BACKDROP_OPACITY = 0.3;
     align-right
     fill-screen
     section-id="bjoern"
-    backdrop-media="/images/members/bjoern.jpg"
-    :backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-media="/images/members/bjoern.jpg"
+    :data-backdrop-opacity="BACKDROP_OPACITY"
+    data-backdrop-origin="right"
   >
     <p>
       Born in 1998 and a Berlin native, Björn has been playing the drums for over 15

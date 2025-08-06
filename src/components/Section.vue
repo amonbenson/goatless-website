@@ -4,8 +4,6 @@ import SectionHeading from "./SectionHeading.vue";
 defineProps({
   title: { type: String, required: true },
   sectionId: { type: String, default: undefined },
-  backdropMedia: { type: String, default: undefined },
-  backdropOpacity: { type: Number, default: undefined },
   alignLeft: Boolean,
   alignRight: Boolean,
   fillScreen: Boolean,
@@ -13,11 +11,7 @@ defineProps({
 </script>
 
 <template>
-  <section
-    class="padded-container space-y-4 mb-24"
-    :data-backdrop-media="backdropMedia"
-    :data-backdrop-opacity="backdropOpacity"
-  >
+  <section class="padded-container space-y-4 mb-24">
     <SectionHeading
       :section-id="sectionId"
       class="w-full"

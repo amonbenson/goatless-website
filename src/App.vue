@@ -9,7 +9,6 @@ import BackdropMedia from "./components/BackdropMedia.vue";
 import InstagramIcon from "@/assets/svg/instagram_line.svg";
 import TiktokIcon from "@/assets/svg/tiktok_line.svg";
 import YoutubeIcon from "@/assets/svg/youtube_line.svg";
-import GoatlessLogoSvg from "@/assets/svg/goatless_logo.svg";
 
 const SOCIALS = [
   { icon: InstagramIcon, link: "https://www.instagram.com/goatless_official" },
@@ -55,7 +54,8 @@ function handleScroll() {
   // update the backdrop media
   const media = el.dataset.backdropMedia;
   const opacity = Number(el.dataset.backdropOpacity ?? 1.0);
-  backdropStore.setMedia(media, opacity);
+  const origin = el.dataset.backdropOrigin ?? "center";
+  backdropStore.setMedia(media, opacity, origin);
 }
 
 onMounted(() => {
@@ -91,36 +91,7 @@ onUnmounted(() => {
 
     <MemberSections />
 
-    <Section
-      title="Impressum"
-      section-id="legal"
-      backdrop-media=""
-      :backdrop-opacity="0"
-    >
-      <h3>Website Owner / Responsible For Content:</h3>
-      <p class="select-text">
-        Amon Benson<br>
-        Albrechtstr. 35a<br>
-        12167 Berlin
-      </p>
-      <p>
-        Phone: <a href="tel:+491622108093">+49 162 2108093</a>
-      </p>
-      <p>
-        Email: <a href="mailto:goatless.official@gmail.com">goatless.official@gmail.com</a>
-      </p>
-
-      <p class="text-center mt-32">
-        <GoatlessLogoSvg class="inline-block size-64" />
-      </p>
-      <p class="text-center mb-64">
-        <a
-          href="https://github.com/amonbenson/goatless-website"
-          target="_blank"
-          rel="noopener noreferrer"
-        >No goats were harmed during the making of this website.</a>
-      </p>
-    </Section>
+    <LegalSection />
   </main>
 
   <footer>

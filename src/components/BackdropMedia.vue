@@ -4,12 +4,14 @@ import { useBackdropStore } from "@/store/backdrop";
 import { storeToRefs } from "pinia";
 
 const backdropStore = useBackdropStore();
-const { url, opacity } = storeToRefs(backdropStore);
+const { url, opacity, origin } = storeToRefs(backdropStore);
 
 // store two image urls and toggle between them to allow for smooth transitions
 const videoUrl = ref(null);
 const imageUrlA = ref(null);
 const imageUrlB = ref(null);
+const originA = ref("center");
+const originB = ref("center");
 const imageSelector = ref(false);
 
 const mediaType = ref("none"); // "none", "image", or "video"
@@ -40,8 +42,10 @@ watch(url, (urlValue) => {
     // toggle between image A and B
     if (imageSelector.value) {
       imageUrlB.value = urlValue;
+      originA.value = origin.value;
     } else {
       imageUrlA.value = urlValue;
+      originB.value = origin.value;
     }
 
     // toggle image selector
@@ -70,8 +74,14 @@ watch(url, (urlValue) => {
 
     <!-- Background Image A -->
     <div
-      class="absolute -inset-1/2 bg-center bg-cover bg-fixed transition-opacity duration-500"
-      :class="mediaType === 'image' ? 'opacity-100' : 'opacity-0'"
+      class="absolute -inset-1/2 bg-cover bg-fixed transition-opacity duration-500"
+      :class="{
+        'opacity-100': mediaType === 'image',
+        'opacity-0': !(mediaType === 'image'),
+        'bg-center': originA === 'center',
+        'bg-[25%_center]': originA === 'left',
+        'bg-[75%_center]': originA === 'right',
+      }"
       :style="{
         backgroundImage: imageUrlA ? `url(${imageUrlA})` : 'none',
       }"
@@ -79,8 +89,14 @@ watch(url, (urlValue) => {
 
     <!-- Background Image B -->
     <div
-      class="absolute -inset-1/2 bg-center bg-cover bg-fixed transition-opacity duration-500"
-      :class="mediaType === 'image' && !imageSelector ? 'opacity-100' : 'opacity-0'"
+      class="absolute -inset-1/2 bg-cover bg-fixed transition-opacity duration-500"
+      :class="{
+        'opacity-100': mediaType === 'image' && !imageSelector,
+        'opacity-0': !(mediaType === 'image' && !imageSelector),
+        'bg-center': originB === 'center',
+        'bg-[25%_center]': originB === 'left',
+        'bg-[75%_center]': originB === 'right',
+      }"
       :style="{
         backgroundImage: imageUrlB ? `url(${imageUrlB})` : 'none',
       }"
