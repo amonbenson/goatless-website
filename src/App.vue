@@ -3,6 +3,7 @@ import GoatlessLogo from "./components/GoatlessLogo.vue";
 import ShowsSection from "./components/ShowsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
 import MemberSections from "./components/MemberSections.vue";
+import LegalSection from "./components/LegalSection.vue";
 import BackdropMedia from "./components/BackdropMedia.vue";
 import InstagramIcon from "@/assets/svg/instagram_line.svg";
 import TiktokIcon from "@/assets/svg/tiktok_line.svg";
