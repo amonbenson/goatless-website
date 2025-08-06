@@ -40,6 +40,12 @@
 }
 
 @layer base {
+  /* preload background images */
+  body::after {
+    @apply absolute size-0 overflow-hidden -z-50;
+    content: url(/images/members/amon.jpg) url(/images/members/bjoern.jpg) url(/images/members/goody.jpg) url(/images/members/lukas.jpg) url(/images/members/nico.jpg);
+  }
+
   html, body {
     @apply text-white scroll-smooth font-body text-justify select-none;
   }
