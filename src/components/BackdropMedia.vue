@@ -45,7 +45,6 @@ function getViewElement(nodeList) {
 }
 
 function handleScroll() {
-  console.log("scroll");
   // set the "nearest" element as the new trigger
   const el = getViewElement(triggerElements.value);
   if (currentTriggerElement.value === el) {

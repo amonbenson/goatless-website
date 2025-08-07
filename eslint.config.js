@@ -10,7 +10,7 @@ export default [
       "comma-dangle": ["error", "always-multiline"],
       "no-console": "warn",
       "no-unused-vars": "error",
-      "vue/component-tags-order": ["error", {
+      "vue/block-order": ["error", {
         order: ["script", "template", "style"],
       }],
       "vue/multi-word-component-names": "off",
