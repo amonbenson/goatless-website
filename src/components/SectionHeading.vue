@@ -13,7 +13,7 @@ defineProps({
   >
     <a
       :href="`#${sectionId}`"
-      class="plain-link"
+      class="link-plain"
     >
       <slot />
     </a>

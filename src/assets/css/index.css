@@ -39,6 +39,10 @@
   @apply before:content-[''] before:absolute before:left-0 before:top-0 before:size-full before:bg-black before:blur-lg;
 }
 
+@utility link-hover {
+  @apply hover:text-red-lighter transition-colors;
+}
+
 @layer base {
   /* preload background images */
   body::after {
@@ -78,7 +82,7 @@
     @apply cursor-pointer;
   }
 
-  a:not(.plain-link) {
+  a:not(.link-plain) {
     @apply text-red-lighter;
   }
 

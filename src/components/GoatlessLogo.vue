@@ -104,7 +104,8 @@ onBeforeUnmount(() => {
         class="overflow-visible absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto bg-blob"
       >
         <a
-          class="text-white"
+          class="link-plain"
+          :class="{ 'cursor-default': showColumns }"
           :href="showColumns ? undefined: '#'"
         >
           <component
@@ -112,9 +113,9 @@ onBeforeUnmount(() => {
             v-for="column, x in columns"
             :key="x"
             :href="column.link && showColumns ? column.link : undefined"
-            class="gl-logo-letter inline-block relative text-white transition-colors"
+            class="gl-logo-letter inline-block relative link-plain"
             :class="{
-              'hover:text-red-lighter': column.link && showColumns,
+              'link-hover': column.link && showColumns,
             }"
           >
             <LogoSvg

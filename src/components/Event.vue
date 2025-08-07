@@ -62,15 +62,15 @@ const locationLink = computed(() => `https://www.google.com/maps/search/?api=1&q
     <div class="shrink w-96 min-w-0 flex flex-col justify-start items-stretch gap-1">
       <h3>
         <a
-          class="plain-link truncate"
+          class="link-plain link-hover truncate"
           :href="event.url"
           target="_blank"
           rel="noopener noreferrer"
         >{{ event.title ?? event.venue.location }}</a>
       </h3>
-      <p class="ftext-xl opacity-muted truncate">
+      <p class="opacity-muted truncate">
         <a
-          class="plain-link"
+          class="link-plain link-hover"
           :href="locationLink"
           target="_blank"
           rel="noopener noreferrer"
