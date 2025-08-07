@@ -103,11 +103,13 @@ onBeforeUnmount(() => {
         id="gl-logo"
         class="overflow-visible absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto bg-blob"
       >
+        <!-- note: this link cannot be toggeled dynamically between a and span, because this would break the gsap animation -->
         <a
           class="link-plain"
           :class="{ 'cursor-default': showColumns }"
           :href="showColumns ? undefined: '#'"
         >
+          <!-- note: same situation here: we cannot change the component type dynamically without breaking the animation, column.link must be static during runtime -->
           <component
             :is="column.link ? 'a' : 'span'"
             v-for="column, x in columns"
