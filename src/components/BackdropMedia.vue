@@ -15,35 +15,37 @@ const originA = ref("center");
 const originB = ref("center");
 const imageSelector = ref(false);
 
+const postScollTimeout = null;
+
 function getViewElement(nodeList) {
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-  let maxVisibleArea = 0;
+  let maxVisibleHeight = 0;
   let mostVisibleEl = null;
 
-  nodeList.forEach(el => {
+  for (let el of nodeList) {
     const rect = el.getBoundingClientRect();
 
     // Skip if completely out of view
-    if (rect.bottom <= 0 || rect.top >= viewportHeight) return;
+    if (rect.bottom <= 0 || rect.top >= viewportHeight) {
+      continue;
+    }
 
     const visibleTop = Math.max(rect.top, 0);
     const visibleBottom = Math.min(rect.bottom, viewportHeight);
     const visibleHeight = visibleBottom - visibleTop;
-    const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
 
-    const visibleArea = visibleHeight * visibleWidth;
-
-    if (visibleArea > maxVisibleArea) {
-      maxVisibleArea = visibleArea;
+    if (visibleHeight > maxVisibleHeight) {
+      maxVisibleHeight = visibleHeight;
       mostVisibleEl = el;
     }
-  });
+  }
 
   return mostVisibleEl;
 }
 
 function handleScroll() {
+  console.log("scroll");
   // set the "nearest" element as the new trigger
   const el = getViewElement(triggerElements.value);
   if (currentTriggerElement.value === el) {
@@ -87,15 +89,28 @@ function handleScroll() {
   }
 }
 
+function handleScrollWithPostScroll() {
+  // first invokation
+  handleScroll();
+
+  // schedule a second invokation. If one is already scheduled, cancel that one first
+  // this will help with some browsers (looking at you, edge) missing a scroll event
+  // when reduced animations are enabled
+  if (postScollTimeout) {
+    clearTimeout(postScollTimeout);
+  }
+  postScollTimeout = setTimeout(handleScroll, 1);
+}
+
 onMounted(() => {
   triggerElements.value = document.querySelectorAll("[data-backdrop-media]");
 
-  document.addEventListener("scroll", handleScroll);
+  document.addEventListener("scroll", handleScrollWithPostScroll);
   handleScroll();
 });
 
 onBeforeUnmount(() => {
-  document.removeEventListener("scroll", handleScroll);
+  document.removeEventListener("scroll", handleScrollWithPostScroll);
 });
 </script>
 
