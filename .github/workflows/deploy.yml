@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0 # pull all commits, because we need to push the full history (otherwise we get a shallow update not allowed error)
 
       - name: Setup SSH key
         shell: bash
