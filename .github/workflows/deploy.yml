@@ -42,5 +42,4 @@ jobs:
       - name: Push to dokku server
         run: |
           git remote add dokku dokku@goatlessband.com:goatless-website
-          git pull dokku main
-          git push dokku main
+          git push dokku main --force
