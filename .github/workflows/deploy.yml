@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,28 +18,26 @@ jobs:
           node-version: "22"
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
-      - name: Build project
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          export BASE_URL=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.html_url')
-          yarn build
-
-      - name: Upload Github Pages Artifact
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: ./dist/
+      - name: Run Lint
+        run: npm lint
 
   deploy:
-    needs: build
-
-    permissions:
-      pages: write
-      id-token: write
-
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4.0.5
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup SSH key
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY_PRIVATE }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H goatlessband.com >> ~/.ssh/known_hosts
+
+      - name: Push to dokku server
+        run: |
+          git remote add dokku dokku@goatlessband.com:goatless-website
+          git push dokku main

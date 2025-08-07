@@ -1,6 +1,5 @@
 # Goatless Website
 
-[![Lint](https://github.com/amonbenson/goatless-website/actions/workflows/lint.yml/badge.svg)](https://github.com/amonbenson/goatless-website/actions/workflows/lint.yml)
 [![Deploy](https://github.com/amonbenson/goatless-website/actions/workflows/deploy.yml/badge.svg)](https://github.com/amonbenson/goatless-website/actions/workflows/deploy.yml)
 
-Check it out on: https://amonbenson.github.io/goatless-website/
+Check it out on: https://goatlessband.com/
