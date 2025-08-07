@@ -15,7 +15,7 @@ const originA = ref("center");
 const originB = ref("center");
 const imageSelector = ref(false);
 
-const postScollTimeout = null;
+let postScrollTimeout = null;
 
 function getViewElement(nodeList) {
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -95,10 +95,10 @@ function handleScrollWithPostScroll() {
   // schedule a second invokation. If one is already scheduled, cancel that one first
   // this will help with some browsers (looking at you, edge) missing a scroll event
   // when reduced animations are enabled
-  if (postScollTimeout) {
-    clearTimeout(postScollTimeout);
+  if (postScrollTimeout) {
+    clearTimeout(postScrollTimeout);
   }
-  postScollTimeout = setTimeout(handleScroll, 1);
+  postScrollTimeout = setTimeout(handleScroll, 1);
 }
 
 onMounted(() => {
