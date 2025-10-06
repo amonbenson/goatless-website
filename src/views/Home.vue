@@ -18,17 +18,20 @@ const SOCIALS = [
 
 <template>
   <BackdropMedia
-    class="fixed inset-0 pointer-events-none -z-10"
+    class="fixed inset-0 pointer-events-none -z-10 print:hidden"
   />
 
   <header>
-    <GoatlessLogo class="z-50" />
+    <h1 class="w-full text-center mb-4 hidden print:block">
+      GOATLESS
+    </h1>
+    <GoatlessLogo class="print:hidden z-50" />
   </header>
 
   <main class="space-y-8">
     <div
       id="scroll-placeholder"
-      class="h-screen"
+      class="h-screen print:hidden"
     />
 
     <ShowsSection />

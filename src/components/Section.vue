@@ -34,7 +34,7 @@ defineProps({
 
       <div
         v-if="fillScreen"
-        class="h-[50vh]"
+        class="h-[50vh] print:h-auto"
       />
     </div>
   </section>
