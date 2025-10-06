@@ -43,6 +43,14 @@
   @apply hover:text-red-lighter transition-colors;
 }
 
+@utility ui-button {
+  @apply px-4 py-2 bg-red hover:bg-red-lighter cursor-pointer transition-colors;
+}
+
+@utility ui-input {
+  @apply py-1 border-b-2 border-b-white/50;
+}
+
 @layer base {
   /* preload background images */
   body::after {

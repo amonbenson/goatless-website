@@ -1,0 +1,88 @@
+\documentclass[14pt,a4paper]{extarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+%\usepackage{fontspec}
+\usepackage[babel=true]{microtype}
+\usepackage[a4paper,margin=1.5cm]{geometry}
+\usepackage{parskip}
+\usepackage{pgfkeys}
+\usepackage{ctable}
+\usepackage{graphics}
+\usepackage{adjustbox}
+
+% no paragraph indentation
+\parskip=0em
+
+% no page numbers
+\pagenumbering{gobble}
+
+\makeatletter
+\newdimen\setlistheight
+\newcommand*{\calcsetlistheight}{%
+  \ifdim\pagegoal=\maxdimen
+    \setlistheight\dimexpr\textheight-0.4pt\relax
+  \else
+    % edit 2: replaced -\baselineskip by -\lineskip-0.4pt
+    % edit 3: removed -\parskip
+    \setlistheight\dimexpr\pagegoal-\pagetotal-\lineskip-0.4pt\relax
+  \fi
+}
+
+\newcommand{\setlistlogo}[1]{%
+  \includegraphics[width=\textwidth]{#1}%
+}
+
+\newcommand{\setlisttitle}[1]{%
+  \adjustbox{width=0.98\textwidth}{%
+    \textbf{\uppercase{#1}}%
+  }%
+}
+
+\newcommand{\songtitle}[1]{{\LARGE\textbf{#1}}}
+\newcommand{\songsep}{\specialrule{0.1em}{0em}{0.5em}}
+
+\pgfkeys{
+  /setlist/.is family, /setlist,
+  default/.style = {
+    logo = logo.pdf,
+    title = {Setlist Title},
+  },
+  logo/.store in = \setlistlogofilename,
+  title/.store in = \setlisttitletext,
+}
+
+\newenvironment{setlist}[1][]{%
+  \pgfkeys{/setlist, default, #1}%
+
+  \begin{center}
+  \setlistlogo{\setlistlogofilename}%
+  \vspace{1ex}
+  \setlisttitle{\setlisttitletext}
+
+  \vspace{1.5cm}
+
+  \calcsetlistheight
+  \def\arraystretch{1.5}
+  \begin{adjustbox}{width=\textwidth,totalheight=\setlistheight,keepaspectratio}
+  \begin{tabular}{@{}c@{}}
+}{%
+  \end{tabular}
+  \end{adjustbox}
+  \end{center}
+}
+\makeatother
+
+\begin{document}
+
+\begin{setlist}[%
+logo={xxx_logo_xxx},%
+title={xxx_title_xxx},%
+]
+xxx_songlist_xxx
+\end{setlist}
+
+\end{document}
