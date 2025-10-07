@@ -11,13 +11,13 @@ import GoatlessLogoSvg from "@/assets/svg/goatless_logo.svg";
     data-backdrop-opacity="0"
   >
     <p class="select-text">
-      Website Owner: Amon Benson
+      Website Owner/Responsible for Content: Amon Benson
     </p>
-    <p>
+    <p class="select-text">
       Teltower Damm 228<br>
       14167 Berlin
     </p>
-    <p>
+    <p class="select-text">
       Phone: <a href="tel:+491622108093">+49 162 2108093</a><br>
       Email: <a href="mailto:goatless.official@gmail.com">goatless.official@gmail.com</a>
     </p>
