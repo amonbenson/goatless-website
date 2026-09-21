@@ -11,13 +11,13 @@ defineProps({
 </script>
 
 <template>
-  <section class="padded-container space-y-4 mb-24">
+  <section class="padded-container mb-24 space-y-4">
     <SectionHeading
       :section-id="sectionId"
       class="w-full"
       :class="{
         'md:w-1/2': alignLeft,
-        'md:w-1/2 ml-auto': alignRight,
+        'ml-auto md:w-1/2': alignRight,
       }"
     >
       {{ title }}
@@ -27,7 +27,7 @@ defineProps({
       class="w-full space-y-4"
       :class="{
         'md:w-1/2': alignLeft,
-        'md:w-1/2 ml-auto': alignRight,
+        'ml-auto md:w-1/2': alignRight,
       }"
     >
       <slot />

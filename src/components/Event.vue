@@ -23,12 +23,15 @@ const location = computed(() => {
   if (street_address) {
     location += `${street_address}, `;
   }
+
   if (postal_code) {
     location += `${postal_code} `;
   }
+
   if (city) {
     location += `${city}, `;
   }
+
   if (country) {
     location += `${country}`;
   }
@@ -49,8 +52,8 @@ const locationLink = computed(() => `https://www.google.com/maps/search/?api=1&q
 </script>
 
 <template>
-  <div class="flex justify-center items-stretch gap-4">
-    <div class="flex-none w-16 flex flex-col justify-center items-center">
+  <div class="flex items-stretch justify-center gap-4">
+    <div class="flex w-16 flex-none flex-col items-center justify-center">
       <div class="font-title text-xl">
         {{ month }}
       </div>
@@ -59,16 +62,16 @@ const locationLink = computed(() => `https://www.google.com/maps/search/?api=1&q
       </div>
     </div>
 
-    <div class="shrink w-96 min-w-0 flex flex-col justify-start items-stretch gap-1">
+    <div class="flex w-96 min-w-0 shrink flex-col items-stretch justify-start gap-1">
       <h3>
         <a
-          class="link-plain link-hover truncate"
+          class="link-plain truncate link-hover"
           :href="event.url"
           target="_blank"
           rel="noopener noreferrer"
         >{{ event.title ?? event.venue.location }}</a>
       </h3>
-      <p class="opacity-muted truncate">
+      <p class="truncate opacity-muted">
         <a
           class="link-plain link-hover"
           :href="locationLink"

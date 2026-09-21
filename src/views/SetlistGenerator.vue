@@ -1,8 +1,9 @@
 <script setup>
-import { ref, nextTick } from "vue";
-import setlistTemplateContents from "@/assets/tex/setlistTemplate.tex?raw";
-import logoUrl from "/images/setlist_logo.png?url";
 import JSZip from "jszip";
+import { nextTick, ref } from "vue";
+
+import logoUrl from "/images/setlist_logo.png?url";
+import setlistTemplateContents from "@/assets/tex/setlistTemplate.tex?raw";
 
 const today = new Date();
 const todayStr = `${String(today.getDate()).padStart(2, "0")}.${String(today.getMonth() + 1).padStart(2, "0")}.${today.getFullYear()}`;
@@ -46,7 +47,7 @@ async function generateSetlist() {
 
     <form
       id="setlist-generator-form"
-      class="flex flex-col w-full max-w-128 gap-4"
+      class="flex w-full max-w-128 flex-col gap-4"
       action="https://www.overleaf.com/docs"
       method="post"
       target="_blank"

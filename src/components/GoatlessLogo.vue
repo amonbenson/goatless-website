@@ -1,6 +1,7 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
 import { gsap } from "gsap";
+import { onBeforeUnmount, onMounted, ref } from "vue";
+
 import LogoSvg from "@/assets/svg/goatless_logo.svg";
 
 const OPACITY_THRESHOLD = 0.75;
@@ -17,9 +18,7 @@ const columns = [
   { letter: "L" },
   { letter: "E", top: "LIN", bottom: "UP", link: "#goody" },
   { letter: "S" },
-  { letter: "S" },
-  // { letter: "S", top: "MU", bottom: "IC" },
-  // { letter: "S", top: "IMPRE", bottom: "SUM", link: "#legal" },
+  { letter: "S", top: "MU", bottom: "IC", link: "#music" },
 ];
 
 function setupAnimation() {
@@ -95,13 +94,13 @@ onBeforeUnmount(() => {
   <div class="fixed w-screen">
     <div
       id="gl-logo-container"
-      class="fixed left-0 top-0 w-screen h-screen pointer-events-none"
+      class="pointer-events-none fixed top-0 left-0 h-screen w-screen"
       data-backdrop-media="/videos/heroBackdrop.mp4"
       :data-backdrop-opacity="0.2"
     >
       <h1
         id="gl-logo"
-        class="overflow-visible absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto bg-blob"
+        class="pointer-events-auto bg-blob absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible"
       >
         <!-- note: this link cannot be toggeled dynamically between a and span, because this would break the gsap animation -->
         <a
@@ -115,14 +114,14 @@ onBeforeUnmount(() => {
             v-for="column, x in columns"
             :key="x"
             :href="column.link && showColumns ? column.link : undefined"
-            class="gl-logo-letter inline-block relative link-plain"
+            class="gl-logo-letter link-plain relative inline-block"
             :class="{
               'link-hover': column.link && showColumns,
             }"
           >
             <LogoSvg
               v-if="column.letter === 'O'"
-              class="inline-block w-[0.95em] -translate-y-[0.2em] mx-[-0.1em]"
+              class="mx-[-0.1em] inline-block w-[0.95em] -translate-y-[0.2em]"
             />
             <template v-else>
               {{ column.letter }}
@@ -130,7 +129,7 @@ onBeforeUnmount(() => {
             <span
               v-for="topLetter, y in column.top?.split('').reverse().join('') ?? []"
               :key="y"
-              class="gl-logo-link-letter text-[40%] absolute left-1/2 top-1/2"
+              class="gl-logo-link-letter absolute top-1/2 left-1/2 text-[40%]"
               :style="{
                 transform: `translate(-50%, calc(-205% - 80% * ${y}))`,
               }"
@@ -140,7 +139,7 @@ onBeforeUnmount(() => {
             <span
               v-for="bottomLetter, y in column.bottom ?? []"
               :key="y"
-              class="gl-logo-link-letter text-[40%] absolute left-1/2 top-1/2"
+              class="gl-logo-link-letter absolute top-1/2 left-1/2 text-[40%]"
               :style="{
                 transform: `translate(-50%, calc(65% + 80% * ${y}))`,
               }"

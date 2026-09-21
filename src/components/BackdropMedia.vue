@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const triggerElements = ref([]);
 const currentTriggerElement = ref(null);
@@ -98,6 +98,7 @@ function handleScrollWithPostScroll() {
   if (postScrollTimeout) {
     clearTimeout(postScrollTimeout);
   }
+
   postScrollTimeout = setTimeout(handleScroll, 1);
 }
 
@@ -118,7 +119,7 @@ onBeforeUnmount(() => {
     <!-- Background Video -->
     <video
       v-if="videoUrl"
-      class="absolute inset-0 w-screen h-screen object-cover object-center transition-opacity duration-500 motion-reduce:hidden"
+      class="absolute inset-0 h-screen w-screen object-cover object-center transition-opacity duration-500 motion-reduce:hidden"
       :class="mediaType === 'video' ? 'opacity-100' : 'opacity-0'"
       autoplay
       loop

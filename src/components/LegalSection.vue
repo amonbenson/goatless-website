@@ -1,6 +1,7 @@
 <script setup>
-import Section from "./Section.vue";
 import GoatlessLogoSvg from "@/assets/svg/goatless_logo.svg";
+
+import Section from "./Section.vue";
 </script>
 
 <template>
@@ -22,10 +23,10 @@ import GoatlessLogoSvg from "@/assets/svg/goatless_logo.svg";
       Email: <a href="mailto:goatless.official@gmail.com">goatless.official@gmail.com</a>
     </p>
 
-    <p class="text-center mt-32">
+    <p class="mt-32 text-center">
       <GoatlessLogoSvg class="inline-block size-64" />
     </p>
-    <p class="text-center mb-64">
+    <p class="mb-64 text-center">
       <a
         href="https://github.com/amonbenson/goatless-website"
         target="_blank"

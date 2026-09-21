@@ -1,8 +1,10 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
 import { getEvents } from "@/api";
-import Section from "./Section.vue";
+
 import Event from "./Event.vue";
+import Section from "./Section.vue";
 
 const events = ref(null);
 

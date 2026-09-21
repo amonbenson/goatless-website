@@ -9,7 +9,7 @@ defineProps({
   <component
     :is="is"
     :id="sectionId"
-    class="pt-24 -mt-24"
+    class="-mt-24 pt-24"
   >
     <a
       :href="`#${sectionId}`"
