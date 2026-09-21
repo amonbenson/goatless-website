@@ -1,6 +1,4 @@
 <script setup>
-import { onMounted, ref } from "vue";
-
 import Section from "./Section.vue";
 </script>
 
